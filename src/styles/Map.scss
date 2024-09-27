@@ -6,13 +6,14 @@
     display: flex;
     flex-direction: column;
     padding: $sectionPadding 0;
-    min-height: 700px;
+    min-height: 1000px;
+    font-family: "Caveat";
 
     .sectionTitle {
         color: white;
         padding: 0 0 $sectionPadding $sectionPadding;
         margin: 0;
-        font-size: 30px;
+        font-size: 50px;
     }
 
     .regionSelection {
