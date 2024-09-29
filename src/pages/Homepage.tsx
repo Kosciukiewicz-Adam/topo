@@ -5,14 +5,16 @@ import "../styles/Homepage.scss"
 import Map from "../components/Map.tsx";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Roles from "../components/Roles.tsx";
+import Footer from "../components/Footer.tsx";
+import ParallaxDivider from "../elements/ParalaxDivider.tsx";
 
 const Homepage: React.FC = () => {
     return (
         <div className="Homepage">
-            <Parallax pages={2}>
+            <Parallax pages={3}>
                 <ParallaxLayer>
                     <img src={mainBackground} alt='main background' className="mainBackgorund" />
-                    <Roles></Roles>
+                    <Roles />
                 </ParallaxLayer>
                 <ParallaxLayer speed={1.1}>
                     <div className="content">
@@ -22,8 +24,11 @@ const Homepage: React.FC = () => {
                                 <h2>Biggest free rock climbing guidebook</h2>
                             </div>
                         </div>
-                        <Map></Map>
                     </div>
+                    <Map />
+                    <ParallaxDivider height="1500px" />
+                    <div className="test" style={{ width: "100%", height: "800px", background: "white " }}></div>
+                    <Footer />
                 </ParallaxLayer>
             </Parallax>
         </div>

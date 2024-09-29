@@ -5,10 +5,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    height: 1200px;
     position: relative;
     font-family: "Caveat";
+    z-index: 2;
+    justify-content: space-around;
 
     .bgImage {
         width: 100%;
@@ -22,6 +23,7 @@
     .contentWrapper {
         width: 100%;
         height: 100%;
+        padding: 50px;
         display: flex;
         flex-direction: column;
         z-index: 2;
