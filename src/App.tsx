@@ -6,18 +6,14 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <HashRouter basename="/app">
-      <ParallaxProvider>
+    <ParallaxProvider>
+      <HashRouter>
         <Routes>
-          <Route path="/" >
-            <Homepage />
-          </Route>
-          <Route path="/topo:regionId" >
-            <div className="route">AAAAA</div>
-          </Route>
+          <Route path="/" Component={Homepage} />
+
         </Routes>
-      </ParallaxProvider>
-    </HashRouter>
+      </HashRouter>
+    </ParallaxProvider>
   );
 }
 

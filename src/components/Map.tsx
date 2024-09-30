@@ -3,9 +3,19 @@ import "../styles/Map.scss";
 import Poland from "@react-map/poland";
 import imgSrc from "../assets/region_mock.jpg";
 import AnimatedChart from "../elements/AnimatedChart.tsx";
+import { useQuery } from "react-query";
 
 const Map: React.FC = () => {
     const [selectedRegion, setSelectedRegion] = useState<string>("");
+
+    const fetchAreas = async () => {
+        const res = await fetch("http://localhost:4000/");
+        return res.json();
+    }
+
+    const { status, data } = useQuery('areas', fetchAreas);
+
+    console.log(status, data);
 
     const Images = () => (
         <div className="images">
