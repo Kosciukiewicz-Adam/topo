@@ -5,13 +5,15 @@ import {
     Geography,
     Marker
 } from "react-simple-maps";
+import { IMarker } from "../interfaces/Marker";
 
-const markers = [
-];
+interface Props {
+    markers: Array<IMarker>;
+    handleClick?: (value: string) => void;
+}
 
-const MapChart = () => {
+const MapChart: React.FC<Props> = ({ markers, handleClick }) => {
     const link1 = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
-
 
     return (
         <ComposableMap
@@ -33,8 +35,8 @@ const MapChart = () => {
                     ))
                 }
             </Geographies>
-            {markers.map(({ name, coordinates, markerOffset }) => (
-                <Marker key={name} coordinates={coordinates}>
+            {markers.map(({ name, coordinates, markerOffset, _id }) => (
+                <Marker key={name} coordinates={coordinates} onClick={() => handleClick?.(_id)}>
                     <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
                     <text
                         textAnchor="middle"

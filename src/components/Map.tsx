@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 import "../styles/Map.scss";
-import imgSrc from "../assets/region_mock.jpg";
 import AnimatedChart from "../elements/AnimatedChart.tsx";
 import { useQuery } from "react-query";
 import MapChart from "../elements/MapChart.tsx";
+import { ICrag } from "../interfaces/Crag.ts";
+import { fetchCrags } from "../api/crag.ts";
 
-interface ICrag {
-    name: string,
-    coordinates: Array<number>,
-    images: Array<string>,
-    description: string,
-}
+
 
 const Map: React.FC = () => {
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
-
-    const fetchAreas = async () => {
-        const res = await fetch("http://localhost:4000/crags");
-        return res.json();
-    }
-
-    const { status, data } = useQuery('areas', fetchAreas);
+    const { status, data } = useQuery('crags', fetchCrags);
 
     useEffect(() => {
         if (status === "success") {
             setSelectedCrag(data[0] as ICrag)
         }
-    }, [data, status])
+    }, [data, status]);
+
+    const selectedCragById = (cragId) => {
+        const cragToSelect = data.find(crag => crag._id === cragId);
+
+        if (cragToSelect) {
+            setSelectedCrag(cragToSelect);
+        }
+    }
+
+    if (!data) {
+        return null
+    }
 
     return (
         <div className="Map">
@@ -49,13 +52,17 @@ const Map: React.FC = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="button">
+                            <Link className="button" to={`/crag/${selectedCrag._id}`}>
                                 learn more details anout region
-                            </div></>
+                            </Link>
+                        </>
                     ) : <>Select region from map</>}
                 </div>
                 <div className="regionMapWrapper">
-                    <MapChart />
+                    <MapChart
+                        markers={data?.map(({ name, coordinates, _id }) => ({ markerOffset: 0, name, coordinates, _id }))}
+                        handleClick={(value) => selectedCragById(value)}
+                    />
                 </div>
             </div>
         </div >

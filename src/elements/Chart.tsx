@@ -4,7 +4,7 @@ import { GradeData } from "../interfaces/GradeData";
 import { GradeScale } from "../consts/GradeScale.ts";
 
 interface Props {
-    positionsAmountToShow: number;
+    positionsAmountToShow?: number;
     allPositions: GradeData[];
     gradeScale: GradeScale;
 }
@@ -14,7 +14,7 @@ const Chart: React.FC<Props> = ({ positionsAmountToShow, allPositions, gradeScal
     const postionsSortedByAmount = allPositions.sort((positionA, positionB) => positionB.amount - positionA.amount);
     let allowedPositions: GradeData[] = [];
 
-    if (positionsAmountToShow < allPositions.length) {
+    if (positionsAmountToShow && positionsAmountToShow < allPositions.length) {
         allowedPositions = postionsSortedByAmount.slice(0, positionsAmountToShow);
     } else {
         allowedPositions = postionsSortedByAmount;
@@ -24,7 +24,6 @@ const Chart: React.FC<Props> = ({ positionsAmountToShow, allPositions, gradeScal
         if (gradeScale === GradeScale.FRENCH) {
             return positionA.grade.localeCompare(positionB.grade);
         } else {
-            console.log(postionsSortedByAmount)
             const formatedGradeA = Number(positionA.grade.replace("V", ""));
             const formatedGradeB = Number(positionB.grade.replace("V", ""));
             return formatedGradeA - formatedGradeB;
