@@ -2,7 +2,7 @@ import React from "react";
 import mainBackground from "../assets/bg5.jpg";
 import logo from "../assets/logo.png";
 import "../styles/Homepage.scss"
-import Map from "../components/Map.tsx";
+import CragPreview from "../components/CragPreview.tsx";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Roles from "../components/Roles.tsx";
 import Footer from "../components/Footer.tsx";
@@ -25,7 +25,7 @@ const Homepage: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <Map />
+                    <CragPreview />
                     <ParallaxDivider height="1500px" />
                     <div className="test" style={{ width: "100%", height: "800px", background: "white " }}></div>
                     <Footer />

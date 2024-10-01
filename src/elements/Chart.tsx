@@ -1,18 +1,32 @@
 import React from "react";
 import "../styles/Chart.scss";
-import { GradeData } from "../interfaces/GradeData";
+import { IGradeData, IRoute } from "../interfaces";
 import { GradeScale } from "../consts/GradeScale.ts";
 
 interface Props {
-    positionsAmountToShow?: number;
-    allPositions: GradeData[];
+    routesAmountToShow?: number;
     gradeScale: GradeScale;
+    allRoutes: IRoute[];
 }
 
-const Chart: React.FC<Props> = ({ positionsAmountToShow, allPositions, gradeScale }) => {
+const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) => {
+    const routesPerGrade = {};
 
-    const postionsSortedByAmount = allPositions.sort((positionA, positionB) => positionB.amount - positionA.amount);
-    let allowedPositions: GradeData[] = [];
+    allRoutes.forEach(route => {
+        if (routesPerGrade[route.grade]) {
+            routesPerGrade[route.grade] += 1
+        } else {
+            routesPerGrade[route.grade] = 1;
+        }
+    });
+
+    console.log(routesPerGrade)
+
+    return null;
+
+
+    const postionsSortedByAmount = allRoutes.sort((positionA, positionB) => positionB.amount - positionA.amount);
+    let allowedPositions: IGradeData[] = [];
 
     if (positionsAmountToShow && positionsAmountToShow < allPositions.length) {
         allowedPositions = postionsSortedByAmount.slice(0, positionsAmountToShow);

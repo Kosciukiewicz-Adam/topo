@@ -12,7 +12,7 @@ interface Props {
     handleClick?: (value: string) => void;
 }
 
-const MapChart: React.FC<Props> = ({ markers, handleClick }) => {
+const Map: React.FC<Props> = ({ markers, handleClick }) => {
     const link1 = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
     return (
@@ -51,4 +51,4 @@ const MapChart: React.FC<Props> = ({ markers, handleClick }) => {
     );
 };
 
-export default MapChart;
+export default Map;

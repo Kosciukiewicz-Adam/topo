@@ -4,4 +4,4 @@ export interface ICrag {
     description: string,
     name: string,
     _id: string;
-}
+};

@@ -1,6 +1,6 @@
 @import "./settings.scss";
 
-.Map {
+.CragPreview {
     width: 100%;
     background: linear-gradient(90deg, rgba(2, 25, 53, 1) 0%, rgba(134, 116, 104, 1) 100%);
     display: flex;
@@ -16,25 +16,25 @@
         font-size: 50px;
     }
 
-    .regionSelection {
+    .sectionContent {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
     }
 
-    .regionMapWrapper {
+    .cragWrapper {
         width: 420px;
         overflow: hidden;
     }
 
-    .regionDetails {
+    .cragDetails {
         width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .regionHeader {
+    .header {
         height: 60px;
         font-size: 30px;
         background: white;
@@ -60,7 +60,7 @@
         gap: 20px;
     }
 
-    .regionImage {
+    .cragImage {
         width: 200px;
         height: 200px;
         overflow: hidden;
@@ -78,7 +78,7 @@
         }
     }
 
-    .regionDesctiption {
+    .cragDesctiption {
         padding: 20px;
     }
 
