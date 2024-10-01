@@ -10,7 +10,12 @@ interface Props {
 }
 
 const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) => {
-    const routesPerGrade = {};
+    if (!allRoutes.length) {
+        return null;
+    }
+
+    let routesToShow: IGradeData[] = [];
+    const routesPerGrade: { [key: string]: number } = {};
 
     allRoutes.forEach(route => {
         if (routesPerGrade[route.grade]) {
@@ -20,21 +25,16 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
         }
     });
 
-    console.log(routesPerGrade)
+    const routesPerGradeArray = Object.entries(routesPerGrade).map(route => ({ grade: route[0], amount: route[1] }));
+    const postionsSortedByAmount = routesPerGradeArray.sort((positionA, positionB) => positionB.amount - positionA.amount);
 
-    return null;
-
-
-    const postionsSortedByAmount = allRoutes.sort((positionA, positionB) => positionB.amount - positionA.amount);
-    let allowedPositions: IGradeData[] = [];
-
-    if (positionsAmountToShow && positionsAmountToShow < allPositions.length) {
-        allowedPositions = postionsSortedByAmount.slice(0, positionsAmountToShow);
+    if (routesAmountToShow && routesAmountToShow < routesPerGradeArray.length) {
+        routesToShow = postionsSortedByAmount.slice(0, routesAmountToShow);
     } else {
-        allowedPositions = postionsSortedByAmount;
+        routesToShow = postionsSortedByAmount;
     }
 
-    allowedPositions = allowedPositions.sort((positionA, positionB) => {
+    routesToShow = routesToShow.sort((positionA, positionB) => {
         if (gradeScale === GradeScale.FRENCH) {
             return positionA.grade.localeCompare(positionB.grade);
         } else {
@@ -59,14 +59,14 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
             </div>
             <div className="gradeAndBar">
                 <div className="chartBarsWrapper">
-                    {allowedPositions.map(position => (
+                    {routesToShow.map(position => (
                         <div className="chartBar" style={{ height: getChartBarHeight(position.amount) }}>
                             <div className="amountValue">{position.amount}</div>
                         </div>
                     ))}
                 </div>
                 <div className="chartGrades">
-                    {allowedPositions.map(position => (
+                    {routesToShow.map(position => (
                         <div className="gradeValue">{position.grade}</div>
                     ))}
                 </div>

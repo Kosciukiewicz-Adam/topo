@@ -38,8 +38,12 @@ const CragPreview: React.FC = () => {
         }
     }
 
-    const getRoutesOfType = (routeType: RouteType) => {
-        return fetchedRoutes.data?.filter((route: IRoute) => route.type === routeType) || [];
+    const getRoutesOfType = (routeType: RouteType): IRoute[] => {
+        if (fetchedRoutes.data?.length) {
+            return fetchedRoutes.data.filter((route: IRoute) => route.type === routeType);
+
+        }
+        return [];
     }
 
     return (
@@ -48,7 +52,7 @@ const CragPreview: React.FC = () => {
             <div className="sectionContent">
                 <div className="cragDetails">
                     <div className="wrapper">
-                        {<h2 className="header">{selectedCrag?.name}</h2>}
+                        {<h2 className="cragHeader">{selectedCrag?.name}</h2>}
                         <div className="desctiption">
                             {selectedCrag?.description}
                         </div>
@@ -62,7 +66,7 @@ const CragPreview: React.FC = () => {
                                     gradeScale={GradeScale.FRENCH}
                                 />
                             </div>
-                            <div className="category">
+                            {/* <div className="category">
                                 <div className="title">Bouldering</div>
                                 <div className="stats">
                                     {`Total boulders amount: ${getRoutesOfType(RouteType.BOULDERING)?.length}`}
@@ -72,7 +76,7 @@ const CragPreview: React.FC = () => {
                                     routesAmountToShow={maxRoutesPerChartCategory}
                                     gradeScale={GradeScale.V}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="images">
                             {selectedCrag?.images.map(imgSrc =>

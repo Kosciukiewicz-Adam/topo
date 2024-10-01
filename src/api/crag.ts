@@ -1,4 +1,4 @@
-import { ICrag } from "../interfaces/Crag";
+import { ICrag, IRoute } from "../interfaces";
 
 export const fetchCrags = async (): Promise<ICrag[]> => {
     const res = await fetch("http://localhost:4000/crags");
@@ -11,6 +11,6 @@ export const fetchCrag = async (cragId: string): Promise<ICrag> => {
 }
 
 export const fetchCragRoutes = async (cragId: string): Promise<IRoute[]> => {
-    const res = await fetch(`http://localhost:4000/crags/${cragId}?`);
+    const res = await fetch(`http://localhost:4000/crags/${cragId}/routes`);
     return res.json();
 }
