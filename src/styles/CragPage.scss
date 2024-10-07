@@ -1,37 +1,257 @@
 @import "./settings.scss";
 
 .CragPage {
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 50px 15% 0 15%;
+    font-family: "Open Sans";
+    position: relative;
+    z-index: 10;
+    padding-top: $sectionPaddingMobile;
 
-    .text {
-        width: 60%;
+    @include mobile-md {
+        padding-top: $sectionPadding;
     }
 
-    .name {
+    .wave {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .introductionSection {
+        width: calc(100% - 40px);
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+
+        @include mobile-md {
+            width: 70%;
+            padding: 0 15%;
+        }
+    }
+
+    .cargName {
         margin: 0;
+        width: 40%;
+        border-bottom: 2px solid black;
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 35px;
+        font-family: "Caveat";
+
+        @include mobile-md {
+            font-size: 50px;
+        }
     }
 
     .stats {
-        color: $yellow;
-        padding: 10px 0;
+        padding: 10px 0 50px 0;
+        font-family: "Caveat";
+        font-size: 20px;
     }
 
-    .header {
+    .gallery {
         width: 100%;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
         justify-content: space-between;
-        align-items: stretch;
+
+        @include mobile-md {
+            gap: 20px;
+        }
+
+    }
+
+    .cragImage {
+        width: calc(50% - 5px);
+        aspect-ratio: 1/1;
+        object-fit: cover;
+
+        @include mobile-md {
+            width: calc(25% - 20px);
+        }
+    }
+
+    .mapAndDescription {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: $sectionPaddingMobile 0;
+        justify-content: space-between;
+
+        @include mobile-md {
+            flex-direction: row;
+            padding: $sectionPadding 0;
+        }
     }
 
     .Map {
-        width: 30%;
+        width: 100%;
+        background: white;
+
+        @include mobile-md {
+            width: 30%;
+        }
+    }
+
+    .description {
+        width: 100%;
+        font-size: 14px;
+        padding: 20px 0 40px 0;
+
+        @include mobile-md {
+            width: 60%;
+            padding: 20px 0 40px 0;
+            padding: 10px 0;
+        }
+    }
+
+    .statsAndLocation {
+        z-index: 10;
+        background: white;
+        width: 100%;
+        overflow-y: scroll;
+        display: flex;
+        justify-content: center;
+
+        @include mobile-md {
+            overflow-y: unset;
+        }
     }
 
     .Chart {
-        justify-content: center
+        justify-content: center;
+        padding: $sectionPadding 10px;
+        width: fit-content;
+    }
+
+    .waveImage {
+        width: 100%;
+
+        &:nth-of-type(2) {
+            transform: rotate(180deg);
+            position: relative;
+            bottom: 2px;
+        }
+    }
+
+    .sectorsSelection {
+        width: 80%;
+        padding: $sectionPadding 10%;
+        background: black;
+        color: white;
+        font-family: "Caveat";
+    }
+
+    .header {
+        font-size: 45px;
+        font-family: "Caveat";
+    }
+
+    .labelsWrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: center;
+        padding: $sectionPadding 0;
+    }
+
+    .SectorLabel {
+        width: 250px;
+        height: 120px;
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+
+        .content {
+            z-index: 2;
+            position: relative;
+            width: calc(100% - 40px);
+            height: calc(100% - 30px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.35);
+            transition: 0.3s;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(107, 107, 107, 0.35);
+            }
+        }
+
+        .name {
+            padding: 5px 8px;
+            border-radius: 10px;
+            background-color: $yellow;
+            color: black;
+            width: fit-content;
+            font-weight: bold;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
+
+    .SectorOverview {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 40px);
+        padding: 0 20px;
+        align-items: center;
+
+        @include mobile-md {
+            width: 70%;
+            padding: $sectionPadding 15%;
+        }
+    }
+
+    .sectorImage {
+        width: 80%;
+        padding: $sectionPadding 0;
+    }
+
+    .routesTable,
+    tr td {
+        font-weight: 400;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        min-width: 100px;
+    }
+
+    .tableWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: $sectionPaddingMobile 0;
+
+        @include mobile-md {
+            overflow-y: unset;
+            padding: $sectionPadding 0;
+        }
     }
 }

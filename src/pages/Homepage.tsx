@@ -12,11 +12,11 @@ const Homepage: React.FC = () => {
     return (
         <div className="Homepage">
             <Parallax pages={3}>
-                <ParallaxLayer>
+                <ParallaxLayer speed={0.1}>
                     <img src={mainBackground} alt='main background' className="mainBackgorund" />
                     <Roles />
                 </ParallaxLayer>
-                <ParallaxLayer speed={1.1}>
+                <ParallaxLayer speed={0.8}>
                     <div className="content">
                         <div className="header">
                             <div className="headerText">

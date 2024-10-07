@@ -52,11 +52,11 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
 
     return (
         <div className="Chart">
-            <div className="values">
+            {/* <div className="values">
                 <div>{maxAmountValue}</div>
                 <div>{maxAmountValue / 2}</div>
                 <div>0</div>
-            </div>
+            </div> */}
             <div className="gradeAndBar">
                 <div className="chartBarsWrapper">
                     {routesToShow.map(position => (
