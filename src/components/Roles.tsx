@@ -32,7 +32,7 @@ const Roles: React.FC = () => {
                 <div className="cardsWrapper">
                     {
                         roles.map(role => (
-                            <PolaroidCard {...role} />
+                            <PolaroidCard {...role} key={role.name} />
                         ))
                     }
                 </div>

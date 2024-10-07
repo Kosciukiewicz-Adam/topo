@@ -8,19 +8,21 @@ import {
 import { IMarker } from "../interfaces/Marker";
 
 interface Props {
-    markers: Array<IMarker>;
+    markers?: Array<IMarker>;
+    scale?: number
     handleClick?: (value: string) => void;
 }
 
-const Map: React.FC<Props> = ({ markers, handleClick }) => {
+const Map: React.FC<Props> = ({ markers, handleClick, scale }) => {
     const link1 = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
     return (
         <ComposableMap
             projection="geoAzimuthalEqualArea"
+            className="Map"
             projectionConfig={{
                 rotate: [-15, -50, 0],
-                scale: 1200
+                scale: scale || 1200,
             }}
         >
             <Geographies geography={link1}>
@@ -35,7 +37,7 @@ const Map: React.FC<Props> = ({ markers, handleClick }) => {
                     ))
                 }
             </Geographies>
-            {markers.map(({ name, coordinates, markerOffset, _id }) => (
+            {markers?.map(({ name, coordinates, markerOffset, _id }) => (
                 <Marker key={name} coordinates={coordinates} onClick={() => handleClick?.(_id)}>
                     <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
                     <text

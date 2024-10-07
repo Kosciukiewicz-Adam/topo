@@ -1,6 +1,37 @@
+@import "./settings.scss";
+
 .CragPage {
-    width: 100%;
-    min-height: 100vh;
+    width: 70%;
     display: flex;
     flex-direction: column;
+    padding: 50px 15% 0 15%;
+
+    .text {
+        width: 60%;
+    }
+
+    .name {
+        margin: 0;
+    }
+
+    .stats {
+        color: $yellow;
+        padding: 10px 0;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    .Map {
+        width: 30%;
+    }
+
+    .Chart {
+        justify-content: center
+    }
 }

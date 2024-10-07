@@ -26,12 +26,12 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
     });
 
     const routesPerGradeArray = Object.entries(routesPerGrade).map(route => ({ grade: route[0], amount: route[1] }));
-    const postionsSortedByAmount = routesPerGradeArray.sort((positionA, positionB) => positionB.amount - positionA.amount);
+    const routesSortedByAmount = routesPerGradeArray.sort((positionA, positionB) => positionB.amount - positionA.amount);
 
     if (routesAmountToShow && routesAmountToShow < routesPerGradeArray.length) {
-        routesToShow = postionsSortedByAmount.slice(0, routesAmountToShow);
+        routesToShow = routesSortedByAmount.slice(0, routesAmountToShow);
     } else {
-        routesToShow = postionsSortedByAmount;
+        routesToShow = routesSortedByAmount;
     }
 
     routesToShow = routesToShow.sort((positionA, positionB) => {
@@ -44,7 +44,7 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
         }
     });
 
-    const maxAmountValue = postionsSortedByAmount[0].amount;
+    const maxAmountValue = Math.max.apply(Math, routesPerGradeArray.map((route) => route.amount))
 
     const getChartBarHeight = (positionAmount: number): string => {
         return `${(positionAmount / maxAmountValue) * 100}%`
@@ -60,14 +60,14 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) =
             <div className="gradeAndBar">
                 <div className="chartBarsWrapper">
                     {routesToShow.map(position => (
-                        <div className="chartBar" style={{ height: getChartBarHeight(position.amount) }}>
+                        <div className="chartBar" style={{ height: getChartBarHeight(position.amount) }} key={position.grade}>
                             <div className="amountValue">{position.amount}</div>
                         </div>
                     ))}
                 </div>
                 <div className="chartGrades">
                     {routesToShow.map(position => (
-                        <div className="gradeValue">{position.grade}</div>
+                        <div className="gradeValue" key={position.grade}>{position.grade}</div>
                     ))}
                 </div>
             </div>

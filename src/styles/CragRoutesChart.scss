@@ -1,8 +1,9 @@
-.AnimatedChart {
+.CragRoutesChart {
     display: flex;
     flex-direction: row;
     width: calc(100% - 40px);
     padding: 20px;
+    justify-content: center;
 
 
     .category {
