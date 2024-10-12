@@ -11,6 +11,7 @@ import Footer from "../components/Footer.tsx";
 import backgroundSrc from "../assets/background.svg";
 import wave from "../assets/wave.svg";
 import { IRoute } from "../interfaces/Route.ts";
+import Menu from "../components/Menu.tsx";
 
 const CragPage: React.FC = () => {
     const [selectedSector, setSelectedSector] = useState<ISector>();
@@ -33,35 +34,44 @@ const CragPage: React.FC = () => {
         return routesData.data.filter(route => route.sectorId === sectorId)
     }
 
+    //style={{ backgroundImage: `url(${wave})` }}
+
+    const mapBackground = "#F7770F"; //#F7770F
+    const mapBorders = "#263238"; // #263238
+
     return (
         <div className="CragPage">
-            {/* <img src={wave} alt="wave" className="wave" /> */}
+            <Menu />
+            <div className="landingPage">
+                <img src={wave} className="wave" />
 
-            <div className="introductionSection">
-                <h1 className="cargName">{name}</h1>
-                <div className="stats">{`${country} | ${routesData.data.length} routes`}</div>
+                <div className="header">
+                    <h1 className="cargName">{name.toUpperCase()}</h1>
+                    <div className="stats">{`${country} | ${routesData.data.length} routes`}</div>
+                </div>
+
 
                 <div className="gallery">
                     {cragData.data.images.map(imageSrc => (
                         <img className="cragImage" src={imageSrc} alt="crag" key={imageSrc} />
                     ))}
                 </div>
-
-
-                <div className="mapAndDescription">
-                    <div className="description">{description}</div>
-                    <Map markers={[{ markerOffset: 0, name, coordinates, _id }]} />
-                </div>
             </div>
 
-            <div className="statsAndLocation">
+            <div className="mapAndDescription">
+                <div className="description">{description}</div>
+                <Map markers={[{ markerOffset: 0, name, coordinates, _id }]} borders={mapBorders} background={mapBackground} />
+            </div>
+
+            <div className="cragGrades">
+                <div className="sectionHeading">Distribution of grades in crag</div>
                 <Chart allRoutes={routesData.data} gradeScale={GradeScale.FRENCH} />
             </div>
 
             <img src={backgroundSrc} alt="background" className="waveImage" />
 
             <div className="sectorsSelection">
-                <h2 className="header">Sectors</h2>
+                <h2 className="sectionHeading">Sectors</h2>
                 <div className="labelsWrapper">
                     {sectorsData.data.map((sector) => (
                         <div
@@ -86,8 +96,8 @@ const CragPage: React.FC = () => {
             <img src={backgroundSrc} alt="background" className="waveImage" />
 
             {selectedSector && (
-                <div className="SectorOverview">
-                    <h2 className="header">{selectedSector?.name}</h2>
+                <div className="sectorOverview">
+                    <h2 className="sectionHeading">{selectedSector?.name}</h2>
 
                     <img className="sectorImage" src={selectedSector.imageWithRoutes} alt="sector routes" />
 

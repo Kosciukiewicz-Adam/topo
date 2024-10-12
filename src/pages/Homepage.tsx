@@ -7,10 +7,12 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Roles from "../components/Roles.tsx";
 import Footer from "../components/Footer.tsx";
 import ParallaxDivider from "../elements/ParalaxDivider.tsx";
+import Menu from "../components/Menu.tsx";
 
 const Homepage: React.FC = () => {
     return (
         <div className="Homepage">
+            <Menu />
             <Parallax pages={3}>
                 <ParallaxLayer speed={0.1}>
                     <img src={mainBackground} alt='main background' className="mainBackgorund" />
