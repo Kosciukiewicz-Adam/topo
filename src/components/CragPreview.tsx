@@ -6,7 +6,6 @@ import Map from "../elements/Map.tsx";
 import { ICrag } from "../interfaces/index.ts";
 import { fetchCrags } from "../api/crag.ts";
 import { QueryStatus } from "../consts/QueryStatus.ts";
-import CragRoutesChart from "./CragRoutesChart.tsx"
 import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
 
 const CragPreview: React.FC = () => {
@@ -28,36 +27,37 @@ const CragPreview: React.FC = () => {
     return (
         <DataComponentWrapper queryStatus={status as QueryStatus}>
             <div className="CragPreview">
-                <h2 className="sectionTitle">Discover climbing in every region of any country</h2>
+                <h2 className="sectionHeading">Discover climbing everywhere around the world</h2>
                 <div className="sectionContent">
+
                     <div className="cragDetails">
-                        <div className="wrapper">
-                            {<h2 className="cragHeader">{selectedCrag?.name}</h2>}
-                            <div className="desctiption">
-                                {selectedCrag?.description}
-                            </div>
-                            {selectedCrag &&
-                                <CragRoutesChart
-                                    selectedCragId={selectedCrag._id}
-                                    maxRoutesPerChartCategory={6}
-                                />
-                            }
-                            <div className="images">
-                                {selectedCrag?.images.map(imgSrc =>
-                                    <div className="cragImage" key={imgSrc}>
-                                        <img src={imgSrc} alt="alt" />
-                                    </div>
-                                )}
-                            </div>
+                        <h2 className="cragHeader">{`${selectedCrag?.name} | ${selectedCrag?.country}`}</h2>
+
+                        <div className="desctiption">
+                            {selectedCrag?.description}
                         </div>
+
+                        <div className="imagesWrapper">
+                            {selectedCrag?.images.slice(0, 3).map(imgSrc =>
+                                <div className="cragImage" key={imgSrc}>
+                                    <img src={imgSrc} alt="alt" />
+                                </div>
+                            )}
+                        </div>
+
+
                         <Link className="button" to={`/crag/${selectedCrag?._id}`}>
-                            learn more details anout region
+                            see the region
                         </Link>
                     </div>
                     <div className="cragMapWrapper">
                         <Map
-                            markers={data?.map(({ name, coordinates, _id }) => ({ markerOffset: 0, name, coordinates, _id }))}
+                            markers={data?.map(({ name, coordinates, _id }) => ({ markerOffset: -20, name, coordinates, _id }))}
                             handleClick={(value) => selectedCragById(value)}
+                            forcedCenter={[10, 40]}
+                            background="#F7770F"
+                            toutchable={true}
+                            scale={800}
                         />
                     </div>
                 </div>

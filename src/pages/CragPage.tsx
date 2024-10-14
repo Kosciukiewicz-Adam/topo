@@ -24,7 +24,7 @@ const CragPage: React.FC = () => {
         return null;
     }
 
-    if (!selectedSector) {
+    if (!selectedSector && sectorsData.data.length) {
         setSelectedSector(sectorsData.data[0])
     }
 
@@ -34,10 +34,8 @@ const CragPage: React.FC = () => {
         return routesData.data.filter(route => route.sectorId === sectorId)
     }
 
-    //style={{ backgroundImage: `url(${wave})` }}
-
     const mapBackground = "#F7770F"; //#F7770F
-    const mapBorders = "#263238"; // #263238
+    const mapBorders = "#263238"; // #26323
 
     return (
         <div className="CragPage">
@@ -52,7 +50,7 @@ const CragPage: React.FC = () => {
 
 
                 <div className="gallery">
-                    {cragData.data.images.map(imageSrc => (
+                    {cragData.data.images.slice(0, 4).map(imageSrc => (
                         <img className="cragImage" src={imageSrc} alt="crag" key={imageSrc} />
                     ))}
                 </div>
@@ -60,7 +58,11 @@ const CragPage: React.FC = () => {
 
             <div className="mapAndDescription">
                 <div className="description">{description}</div>
-                <Map markers={[{ markerOffset: 0, name, coordinates, _id }]} borders={mapBorders} background={mapBackground} />
+                <Map
+                    markers={[{ markerOffset: 0, name, coordinates, _id }]}
+                    background={mapBackground}
+                    borders={mapBorders}
+                />
             </div>
 
             <div className="cragGrades">

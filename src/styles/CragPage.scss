@@ -61,6 +61,7 @@
         position: absolute;
         align-items: center;
         bottom: -150px;
+        z-index: 3;
 
         @include mobile-md {
             gap: 15px;
@@ -211,8 +212,10 @@
 
     .sectorImage {
         width: 60%;
+        max-height: 500px;
         padding: $sectionPadding 0;
         border-radius: 10px;
+        object-fit: contain;
     }
 
     .routesTable,

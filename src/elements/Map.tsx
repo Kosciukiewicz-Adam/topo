@@ -1,63 +1,91 @@
 import React from "react";
 import {
     ComposableMap,
+    ZoomableGroup,
     Geographies,
     Geography,
-    Marker
+    Marker,
 } from "react-simple-maps";
 import { IMarker } from "../interfaces/Marker";
+import link1 from "../assets/usa.json";
 
 interface Props {
-    markers?: Array<IMarker>;
-    scale?: number
     handleClick?: (value: string) => void;
-    showName?: boolean;
+    markers?: Array<IMarker>;
+    forcedCenter?: number[];
+    markerOffset?: number;
+    toutchable?: boolean;
     background?: string;
+    showName?: boolean;
     borders?: string;
+    scale: number
 }
 
-const Map: React.FC<Props> = ({ markers, handleClick, scale, background, borders }) => {
-    const link1 = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-    const defaultBorder = "";
-    const defaultBackground = "";
+const Map: React.FC<Props> = ({
+    forcedCenter,
+    handleClick,
+    background,
+    toutchable,
+    markers,
+    borders,
+    scale,
+}): JSX.Element => {
+    const defaultBorder = "white";
+    const defaultBackground = "grey";
 
     const mapFill = background || defaultBackground;
     const mapStroke = borders || defaultBorder;
 
+    const center = markers && markers.length < 2 ? markers[0].coordinates : [0, 0];
+    const scaledFontSize = scale < 300 ? "15px" : "30px";
+
     return (
         <ComposableMap
-            projection="geoAzimuthalEqualArea"
+            projection="geoMercator"
             className="Map"
             projectionConfig={{
-                rotate: [-15, -50, 0],
-                scale: scale || 1200,
+                scale: scale,
             }}
+            style={toutchable ? {} : { pointerEvents: "none" }}
         >
-            <Geographies geography={link1}>
-                {({ geographies }) =>
-                    geographies.map((geo) => (
-                        <Geography
-                            stroke={mapStroke}
-                            key={geo.rsmKey}
-                            geography={geo}
-                            fill={mapFill}
-                        />
-                    ))
-                }
-            </Geographies>
-            {markers?.map(({ name, coordinates, markerOffset, _id }) => (
-                <Marker key={name} coordinates={coordinates} onClick={() => handleClick?.(_id)}>
-                    <circle r={10} fill="#000" stroke="#fff" strokeWidth={2} />
-                    <text
-                        textAnchor="middle"
-                        y={markerOffset}
-                        style={{ fontFamily: "system-ui", fill: "#000" }}
-                    >
-                        {name}
-                    </text>
-                </Marker>
-            ))}
+            <ZoomableGroup center={forcedCenter || center} zoom={0.65}>
+                <Geographies geography={link1}>
+                    {({ geographies }) =>
+                        geographies.map((geo) => (
+                            <Geography
+                                stroke={mapStroke}
+                                key={geo.rsmKey}
+                                geography={geo}
+                                fill={mapFill}
+                                style={{
+                                    default: {
+                                        outline: "none"
+                                    },
+                                    pressed: {
+                                        outline: "none"
+                                    },
+                                    hover: {
+                                        outline: "none"
+                                    }
+                                }}
+                            />
+                        ))
+                    }
+                </Geographies>
+                {markers?.map(({ name, coordinates, markerOffset, _id }) => (
+                    <Marker key={name} coordinates={coordinates} onClick={() => handleClick?.(_id)} className="marker">
+                        <circle r={5} fill="#000" />
+                        <text
+                            style={{ fontFamily: "system-ui", fill: "#000", fontSize: scaledFontSize }}
+                            textAnchor="middle"
+                            y={markerOffset}
+                        >
+                            {name}
+                        </text>
+                    </Marker>
+                ))}
+            </ZoomableGroup>getMapContent()
         </ComposableMap>
     );
 };

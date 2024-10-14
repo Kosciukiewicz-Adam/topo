@@ -1,25 +1,29 @@
 @import "./settings.scss";
 
 .CragPreview {
-    width: 100%;
-    background: linear-gradient(90deg, rgba(2, 25, 53, 1) 0%, rgba(134, 116, 104, 1) 100%);
+    width: 70%;
+    background: white;
     display: flex;
     flex-direction: column;
-    padding: $sectionPadding 0;
-    min-height: 940px;
-    font-family: "Caveat";
+    padding: $sectionPadding 15%;
+    font-family: "Afacad Flux";
+    box-shadow: 0px -10px 15px 10px rgba(0, 0, 0, 0.1);
 
-    .sectionTitle {
-        color: white;
-        padding: 0 0 $sectionPadding $sectionPadding;
+    .cragHeader {
         margin: 0;
-        font-size: 50px;
+        padding-bottom: 20px
+    }
+
+    .sectionHeading {
+        margin: 0;
+        font-size: 35px;
     }
 
     .sectionContent {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        width: 100%;
+        padding-top: $sectionPadding;
     }
 
     .cragDetails {
@@ -29,41 +33,22 @@
         align-items: center;
     }
 
-    .cragMapWrapper {
-        width: 30%;
+    .desctiption {
+        padding-bottom: 20px;
     }
 
-    .cragheader {
-        height: 60px;
-        font-size: 30px;
-        background: white;
-        display: grid;
-        place-content: center;
-        margin: 0;
-        padding: 20px;
-    }
-
-    .wrapper {
+    .imagesWrapper {
         width: 100%;
-        background: white;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .images {
-        height: calc(100% - 50px);
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 10px;
     }
 
     .cragImage {
-        width: 30%;
+        width: 33%;
         aspect-ratio: 1/1;
         overflow: hidden;
-
+        border-radius: 10px;
 
         img {
             width: 100%;
@@ -77,41 +62,35 @@
         }
     }
 
-    .cragDesctiption {
-        padding: 20px;
-    }
-
     .button {
-        width: 100%;
+        text-decoration: none;
+        margin-top: 20px;
+        width: 60%;
         height: 50px;
-        padding: 0 20px;
-        background: black;
-        color: white;
         display: grid;
         place-content: center;
-
-        &:hover {
-            cursor: pointer;
-            opacity: 0.7;
-        }
+        color: white;
+        border-radius: 10px;
+        background: #F7770F;
     }
 
-    .CragRoutesChart {
-        padding-bottom: 20px;
+
+    .cragMapWrapper {
+        width: calc(50% - 100px);
+        padding: 0 $sectionPadding;
         display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: flex-end;
-        padding-left: 5px;
-        margin-top: 10px;
     }
 
-    .title {
-        font-size: 20px;
-        font-weight: bold;
-    }
+    .Map {
+        width: 100%;
+        cursor: grab;
 
-    .stats {
-        font-size: 18px;
+        .marker {
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
     }
 }
