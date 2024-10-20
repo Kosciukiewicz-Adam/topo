@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import drag from "../assets/icons/drag.svg";
 import mouse from "../assets/icons/mouse.svg";
 import search from "../assets/icons/search.svg";
+import Footer from "../components/Footer.tsx";
 
 const CragsList: React.FC = () => {
     const { data, status } = useQuery('crags', () => fetchCrags());
@@ -102,6 +103,7 @@ const CragsList: React.FC = () => {
                         </div>
                     ))}
                 </div>
+                <Footer />
             </div>
         </DataComponentWrapper >
     )
