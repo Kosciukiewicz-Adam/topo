@@ -11,6 +11,8 @@ import ParallaxDivider from "../elements/ParalaxDivider.tsx";
 import Menu from "../components/Menu.tsx";
 import ServiceStats from "../components/ServiceStats.tsx";
 import { isMobile } from "../consts/isMobile.ts";
+import imgSrc from "../assets/tommy_caldwell.avif";
+import imgSrcMobile from "../assets/tommy.avif";
 
 const Homepage: React.FC = () => {
     const parallaxRef = useRef<any>(null);
@@ -29,11 +31,13 @@ const Homepage: React.FC = () => {
     return (
         <div className="Homepage">
             <Menu />
-            <Parallax pages={3} ref={parallaxRef}>
+            <Parallax pages={isMobile() ? 3.2 : 3} ref={parallaxRef}>
                 <ParallaxLayer speed={0.1}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />
                     <Roles />
-                    <div className="ee" style={{ height: "731px", background: "black" }}></div>
+                    <div className="placeholder">
+                        <img src={isMobile() ? imgSrcMobile : imgSrc} alt="" />
+                    </div>
                     <Footer />
                 </ParallaxLayer>
                 <ParallaxLayer speed={0.8}>

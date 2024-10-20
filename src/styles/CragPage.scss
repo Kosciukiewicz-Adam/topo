@@ -145,6 +145,10 @@
     .gradeAndBar {
         width: 100%;
         overflow-x: scroll;
+
+        @include mobile-md {
+            overflow-x: unset;
+        }
     }
 
     .sectionHeading {
@@ -159,6 +163,10 @@
 
     .Chart {
         justify-content: center;
+
+        .chartBarsWrapper {
+            height: 150px;
+        }
     }
 
     .waveImage {
