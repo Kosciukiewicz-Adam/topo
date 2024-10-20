@@ -62,6 +62,7 @@ const CragPage: React.FC = () => {
                     markers={[{ markerOffset: 0, name, coordinates, _id }]}
                     background={mapBackground}
                     borders={mapBorders}
+                    scale={1200}
                 />
             </div>
 
@@ -114,16 +115,14 @@ const CragPage: React.FC = () => {
                                     <th>Grade</th>
                                     <th>Length</th>
                                     <th>Author</th>
-                                    <th>Estabished</th>
                                 </tr>
                                 {getSectorRoutes(selectedSector._id).map((route, index) => (
                                     <tr key={route?.name}>
                                         <td>{index + 1}</td>
                                         <td>{route?.name}</td>
                                         <td>{route?.grade}</td>
-                                        <td>{route?.lenght}</td>
+                                        <td>{route?.length}</td>
                                         <td>{route?.author}</td>
-                                        <td>{route?.established}</td>
                                     </tr>
                                 ))}
                             </tbody>

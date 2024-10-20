@@ -7,6 +7,8 @@ import { ICrag } from "../interfaces/index.ts";
 import { fetchCrags } from "../api/crag.ts";
 import { QueryStatus } from "../consts/QueryStatus.ts";
 import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
+import drag from "../assets/icons/drag.svg";
+import mouse from "../assets/icons/mouse.svg";
 
 const CragPreview: React.FC = () => {
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
@@ -59,6 +61,17 @@ const CragPreview: React.FC = () => {
                             toutchable={true}
                             scale={800}
                         />
+
+                        <div className="controllsInfo">
+                            <div className="controll">
+                                <img src={mouse} alt="scroll" className="icon" />
+                                <div className="description">use scroll to zoom in and out on map</div>
+                            </div>
+                            <div className="controll">
+                                <img src={drag} alt="scroll" className="icon" />
+                                <div className="description">hold and move mouse to move the map</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div >

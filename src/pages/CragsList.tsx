@@ -8,6 +8,9 @@ import Map from "../elements/Map.tsx";
 import { ICrag } from "../interfaces";
 import Menu from "../components/Menu.tsx";
 import { useNavigate } from "react-router";
+import drag from "../assets/icons/drag.svg";
+import mouse from "../assets/icons/mouse.svg";
+import search from "../assets/icons/search.svg";
 
 const CragsList: React.FC = () => {
     const { data, status } = useQuery('crags', () => fetchCrags());
@@ -26,7 +29,6 @@ const CragsList: React.FC = () => {
     const filteredCrags = (country: string): ICrag[] => {
         return data?.filter(crag => {
             if (searchQuery) {
-                console.log(crag.name.toLocaleLowerCase().includes(searchQuery), crag.name, searchQuery.toLocaleLowerCase());
                 return crag.country === country && crag.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase());
             }
             return crag.country === country;
@@ -35,6 +37,11 @@ const CragsList: React.FC = () => {
 
     const getCountryLabel = (country: string): string => {
         return `${country} | ${filteredCrags(country).length} ${filteredCrags(country).length > 1 ? 'crags' : 'crag'}`
+    }
+
+    const handleHintClick = (hint: string) => {
+        document.getElementById(hint)?.scrollIntoView();
+        setSearchQuery("");
     }
 
     const showHints = !!searchHints?.length && !!searchQuery.length;
@@ -46,12 +53,12 @@ const CragsList: React.FC = () => {
                 <div className="landingPage">
                     <h1 className="header">Find the crag</h1>
                     <div className={`searchbar${showHints ? " hintsActive" : ""}`}>
-                        <input type="text" onChange={e => setSearchQuery(e.target.value)} />
-                        <div className="searchIcon">🔎</div>
+                        <input type="text" onChange={e => setSearchQuery(e.target.value)} value={searchQuery} />
+                        <img src={search} className="searchIcon" alt="search" />
                         {showHints && (
                             <div className="hintsList">
                                 {searchHints?.map(hint => (
-                                    <div className="hint" onClick={() => document.getElementById(hint)?.scrollIntoView()}>{hint}</div>
+                                    <div className="hint" onClick={() => handleHintClick(hint)}>{hint}</div>
                                 ))}</div>
                         )}
                     </div>
@@ -64,6 +71,17 @@ const CragsList: React.FC = () => {
                             toutchable={true}
                             scale={200}
                         />
+
+                        <div className="controllsInfo">
+                            <div className="controll">
+                                <img src={mouse} alt="scroll" className="icon" />
+                                <div className="description">use scroll to zoom in and out on map</div>
+                            </div>
+                            <div className="controll">
+                                <img src={drag} alt="scroll" className="icon" />
+                                <div className="description">hold and move mouse to move the map</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

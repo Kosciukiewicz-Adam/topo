@@ -6,7 +6,6 @@ const Menu: React.FC = () => {
     const menuOptions: { name: string, link: string }[] = [
         { name: "Home", link: "/" },
         { name: "Crags", link: "/crags" },
-        { name: "About", link: "/about" }
     ]
 
     return (

@@ -4,7 +4,7 @@ export interface IRoute {
     established: string;
     sectorId: string;
     type: RouteType;
-    lenght: string;
+    length: string;
     author: string;
     cragId: string;
     grade: string;

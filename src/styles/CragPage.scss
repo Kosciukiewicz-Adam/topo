@@ -20,16 +20,17 @@
 
     .landingPage {
         width: 100%;
-        height: 700px;
+        height: 500px;
         display: flex;
         flex-direction: column;
-        background: black;
-        background: #263238;
-        background: linear-gradient(90deg, rgba(38, 36, 59, 1) 0%, rgba(0, 0, 0, 1) 100%);
         background: linear-gradient(90deg, rgba(2, 25, 53, 1) 0%, rgba(134, 116, 104, 1) 100%);
         justify-content: center;
         align-items: center;
         position: relative;
+
+        @include mobile-md {
+            height: 700px;
+        }
     }
 
     .header {
@@ -42,9 +43,13 @@
     }
 
     .cargName {
-        font-size: 100px;
+        font-size: 30px;
         margin: 0;
         text-shadow: 0px 0px 20px black;
+
+        @include mobile-md {
+            font-size: 100px;
+        }
     }
 
     .stats {
@@ -52,7 +57,7 @@
     }
 
     .gallery {
-        width: 70%;
+        width: calc(100% - 20px);
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -60,13 +65,14 @@
         justify-content: space-between;
         position: absolute;
         align-items: center;
-        bottom: -150px;
+        bottom: -200px;
         z-index: 3;
 
         @include mobile-md {
             gap: 15px;
+            width: 70%;
+            bottom: -150px;
         }
-
     }
 
     .cragImage {
@@ -85,38 +91,70 @@
 
     .mapAndDescription {
         display: flex;
-        flex-direction: row;
-        margin-top: 200px;
-        width: calc(70% - 200px);
-        height: 300px;
-        padding: 50px;
+        flex-direction: column;
+        margin-top: 240px;
+        width: calc(100% - 20px);
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
         border-radius: 10px;
-        border-left: 100px solid #F7770F;
+
+        @include mobile-md {
+            width: calc(70% - 200px);
+            height: 300px;
+            flex-direction: row;
+            padding: 50px;
+            margin-top: 200px;
+            border-left: 100px solid #F7770F;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+        }
     }
 
     .description {
-        width: 55%;
+        width: 100%;
+        text-align: justify;
+
+        @include mobile-md {
+            width: 55%;
+            text-align: left;
+        }
     }
 
     .Map {
-        width: 40%;
+        width: 100%;
         border: 2px solid #F7770F;
+        margin: 20px 0;
+
+        @include mobile-md {
+            width: 40%;
+            margin: 0;
+        }
     }
 
     .cragGrades {
-        width: 70%;
+        width: calc(100% - 40px);
         display: flex;
         flex-direction: column;
-        padding: 50px 0;
+        padding: $sectionPaddingMobile 0;
+
+        @include mobile-md {
+            width: 70%;
+            padding: $sectionPadding 0;
+        }
+    }
+
+    .gradeAndBar {
+        width: 100%;
+        overflow-x: scroll;
     }
 
     .sectionHeading {
-        font-size: 30px;
+        font-size: 24px;
         margin: 0;
         width: 100%;
+
+        @include mobile-md {
+            font-size: 30px;
+        }
     }
 
     .Chart {
@@ -135,10 +173,15 @@
 
 
     .sectorsSelection {
-        width: 70%;
-        padding: 0 15%;
+        width: calc(100% - 40px);
+        padding: 0 20px;
         background: black;
         color: white;
+
+        @include mobile-md {
+            width: 70%;
+            padding: 0 15%;
+        }
     }
 
     .labelsWrapper {
@@ -151,11 +194,16 @@
     }
 
     .SectorLabel {
-        width: 350px;
-        height: 220px;
+        width: 250px;
+        height: 120px;
         position: relative;
         border-radius: 20px;
         overflow: hidden;
+
+        @include mobile-md {
+            width: 350px;
+            height: 220px;
+        }
 
         .content {
             z-index: 2;

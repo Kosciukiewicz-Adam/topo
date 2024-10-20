@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSpring, a } from '@react-spring/web';
 import "../styles/PolaroidCard.scss";
+import turnaround from "../assets/icons/turnaround.svg";
 
 interface Props {
     name: string;
@@ -8,8 +9,9 @@ interface Props {
     imgSrc: any;
 }
 
-const PolaroidCard: React.FC<Props> = ({ imgSrc, name, description }) => {
+const PolaroidCard: React.FC<Props> = ({ imgSrc, name, description }): JSX.Element => {
     const [flipped, set] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false);
 
     const { transform, opacity } = useSpring({
         opacity: flipped ? 1 : 0,
@@ -41,6 +43,14 @@ const PolaroidCard: React.FC<Props> = ({ imgSrc, name, description }) => {
                 </p>
                 <p>{description}</p>
             </a.div>
+
+            <img
+                style={{ transform: `rotate(${clicked ? "180deg" : "-180deg"})` }}
+                onClick={() => setClicked(prev => !prev)}
+                className="clickIcon"
+                src={turnaround}
+                alt="click"
+            />
         </div>
     )
 }
