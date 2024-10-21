@@ -13,7 +13,7 @@ import mouse from "../assets/icons/mouse.svg";
 import search from "../assets/icons/search.svg";
 import Footer from "../components/Footer.tsx";
 
-const CragsList: React.FC = () => {
+const CragsList: React.FC = (): JSX.Element => {
     const { data, status } = useQuery('crags', () => fetchCrags());
     const [searchQuery, setSearchQuery] = useState<string>("");
     const navigate = useNavigate();

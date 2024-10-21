@@ -14,7 +14,7 @@ import { isMobile } from "../consts/isMobile.ts";
 import imgSrc from "../assets/tommy_caldwell.avif";
 import imgSrcMobile from "../assets/tommy.avif";
 
-const Homepage: React.FC = () => {
+const Homepage: React.FC = (): JSX.Element => {
     const parallaxRef = useRef<any>(null);
     const [scrollTop, setScrollTop] = useState<number>(0);
 
@@ -26,13 +26,13 @@ const Homepage: React.FC = () => {
                 setScrollTop(parallaxRef?.current?.container.current.scrollTop)
             })
         }
-    })
+    });
 
     return (
         <div className="Homepage">
             <Menu />
-            <Parallax pages={isMobile() ? 3.2 : 3} ref={parallaxRef}>
-                <ParallaxLayer speed={0.1}>
+            <Parallax pages={3} ref={parallaxRef}>
+                <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />
                     <Roles />
                     <div className="placeholder">
@@ -41,16 +41,14 @@ const Homepage: React.FC = () => {
                     <Footer />
                 </ParallaxLayer>
                 <ParallaxLayer speed={0.8}>
-                    <div className="content">
-                        <div className="header">
-                            <div className="headerText">
-                                <img src={logo} alt='logo' className="logo" />
-                                <h2>Biggest free rock climbing guidebook</h2>
-                            </div>
+                    <div className="header">
+                        <div className="headerText">
+                            <img src={logo} alt='logo' className="logo" />
+                            <h2>Biggest free rock climbing guidebook</h2>
                         </div>
                     </div>
                     <CragPreview />
-                    <ParallaxDivider height="900px" mobileHeight="700px" />
+                    <ParallaxDivider height="900px" mobileHeight="600px" />
                     <ServiceStats scrollTop={scrollTop} />
                 </ParallaxLayer>
             </Parallax>

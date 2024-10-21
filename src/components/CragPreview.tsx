@@ -9,10 +9,12 @@ import { QueryStatus } from "../consts/QueryStatus.ts";
 import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
 import drag from "../assets/icons/drag.svg";
 import mouse from "../assets/icons/mouse.svg";
+import { isMobile } from "../consts/isMobile.ts";
 
-const CragPreview: React.FC = () => {
+const CragPreview: React.FC = (): JSX.Element => {
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
     const { status, data } = useQuery('crags', fetchCrags);
+    const maxMobileDescriptionLength = 70;
 
     if (!selectedCrag && data) {
         setSelectedCrag(data[0])
@@ -26,6 +28,19 @@ const CragPreview: React.FC = () => {
         }
     }
 
+    const getDescription = (description: string): string => {
+        const splitedDescription = description.split(" ");
+
+        if (!isMobile() || splitedDescription.length < maxMobileDescriptionLength) {
+            return description;
+        }
+
+        const trimmedDescription = splitedDescription.slice(0, maxMobileDescriptionLength);
+        trimmedDescription.push(" (...)");
+        return trimmedDescription.join(" ");
+
+    }
+
     return (
         <DataComponentWrapper queryStatus={status as QueryStatus}>
             <div className="CragPreview">
@@ -36,7 +51,7 @@ const CragPreview: React.FC = () => {
                         <h2 className="cragHeader">{`${selectedCrag?.name} | ${selectedCrag?.country}`}</h2>
 
                         <div className="desctiption">
-                            {selectedCrag?.description}
+                            {selectedCrag?.description && getDescription(selectedCrag.description)}
                         </div>
 
                         <div className="imagesWrapper">

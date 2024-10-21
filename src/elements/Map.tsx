@@ -7,7 +7,7 @@ import {
     Marker,
 } from "react-simple-maps";
 import { IMarker } from "../interfaces/Marker";
-import link1 from "../assets/usa.json";
+import geoJSON from "../assets/usa.json";
 
 interface Props {
     handleClick?: (value: string) => void;
@@ -50,7 +50,7 @@ const Map: React.FC<Props> = ({
             style={toutchable ? {} : { pointerEvents: "none" }}
         >
             <ZoomableGroup center={forcedCenter || center} zoom={0.65}>
-                <Geographies geography={link1}>
+                <Geographies geography={geoJSON}>
                     {({ geographies }) =>
                         geographies.map((geo) => (
                             <Geography

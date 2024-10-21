@@ -6,7 +6,7 @@ import youtube from "../assets/icons/youtube.svg";
 import facebook from "../assets/icons/facebook.svg";
 import github from "../assets/icons/github.svg";
 
-const Footer: React.FC = () => {
+const Footer: React.FC = (): JSX.Element => {
     return (
         <div className="Footer">
             <div className="buttonsWrapper">

@@ -28,7 +28,7 @@ const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
     </div>
 )
 
-const ServiceStats: React.FC<Props> = ({ scrollTop }) => {
+const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const [counter, setCounter] = useState<number>(0);
     const routesAmount = 851;
     const sectorsAmount = 102;
@@ -62,7 +62,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }) => {
     const getIncrementedNumber = (number: number, speedMultiply?: number) => {
         if (speedMultiply) {
             return counter * speedMultiply <= number ? counter * speedMultiply : number;
-        } 
+        }
 
         return counter <= number ? counter : number;
     }

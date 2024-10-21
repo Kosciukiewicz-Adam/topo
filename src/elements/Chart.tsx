@@ -9,7 +9,7 @@ interface Props {
     allRoutes: IRoute[];
 }
 
-const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }) => {
+const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }): JSX.Element => {
     if (!allRoutes.length) {
         return null;
     }

@@ -13,7 +13,7 @@ import wave from "../assets/wave.svg";
 import { IRoute } from "../interfaces/Route.ts";
 import Menu from "../components/Menu.tsx";
 
-const CragPage: React.FC = () => {
+const CragPage: React.FC = (): JSX.Element => {
     const [selectedSector, setSelectedSector] = useState<ISector>();
     const { cragId } = useParams();
     const cragData = useQuery('crag', () => fetchCrag(cragId || ""));

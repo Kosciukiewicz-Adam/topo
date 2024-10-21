@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Menu.scss";
 import { Link } from "react-router-dom";
 
-const Menu: React.FC = () => {
+const Menu: React.FC = (): JSX.Element => {
     const menuOptions: { name: string, link: string }[] = [
         { name: "Home", link: "/" },
         { name: "Crags", link: "/crags" },
