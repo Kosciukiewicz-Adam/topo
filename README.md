@@ -1,7 +1,7 @@
-## Topo project
+# Topo project
 Topo is guide for rock climbing, it contains informations about crags (climbing places) around the world. Website is designed and created by me :). Backend is deployed on https://render.com/
 
-# Frontend:
+## Frontend:
 - React
   + React router
   + React spring
@@ -9,10 +9,10 @@ Topo is guide for rock climbing, it contains informations about crags (climbing 
 - TypeScript
 - SCSS
 
-# Backend:
+## Backend:
 - Express
 - MongoDB
 - TypeScript
 
-Backend repo: https://github.com/Kosciukiewicz-Adam/topo_server
+### Backend repo: https://github.com/Kosciukiewicz-Adam/topo_server
 
