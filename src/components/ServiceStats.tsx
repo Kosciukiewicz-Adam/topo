@@ -30,6 +30,7 @@ const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
 
 const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const [counter, setCounter] = useState<number>(0);
+    const startScrollHeight = isMobile() ? 100 : 1200
     const routesAmount = 851;
     const sectorsAmount = 102;
     const cragsAmount = 46;
@@ -37,16 +38,13 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const yearsAmount = 5;
 
     const getBgImageScale = (): number => {
-        // if (scrollTop <= 1800) {
-        //     return scrollTop / 1000;
-        // }
         return scrollTop / 1000;
     }
 
     useEffect(() => {
         let interval;
 
-        if (scrollTop > 1200) {
+        if (scrollTop > startScrollHeight) {
             interval = window.setInterval(() => setCounter(prev => (prev + 1)), 50);
         }
 

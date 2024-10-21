@@ -47,9 +47,9 @@ const Homepage: React.FC = (): JSX.Element => {
                             <h2>Biggest free rock climbing guidebook</h2>
                         </div>
                     </div>
-                    <CragPreview />
+                    {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview />}
                     <ParallaxDivider height="900px" mobileHeight="600px" />
-                    <ServiceStats scrollTop={scrollTop} />
+                    {isMobile() ? <CragPreview /> : <ServiceStats scrollTop={scrollTop} />}
                 </ParallaxLayer>
             </Parallax>
         </div>
