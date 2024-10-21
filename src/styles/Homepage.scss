@@ -8,8 +8,12 @@
     position: relative;
 
     .placeholder {
-        height: calc(100vh - 200px);
+        height: calc(100vh - 150px);
         width: 100%;
+
+        @include mobile-md {
+            height: calc(100vh - 200px);
+        }
 
         img {
             width: 100%;
