@@ -62,7 +62,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 5px;
-        justify-content: space-between;
+        justify-content: center;
         position: absolute;
         align-items: center;
         bottom: -200px;
@@ -95,14 +95,14 @@
         transition: 0.5s;
 
         @include mobile-md {
-            width: calc(25% - 15px);
+            width: 20%;
 
             &:hover~.cragImage {
                 transform: rotateY(-25deg);
             }
 
             &:hover {
-                transform: rotateY(0deg) scale(1.15) !important;
+                transform: rotateY(0deg) scale(1.2) !important;
                 z-index: 1;
                 box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
                 border-color: $orange;
