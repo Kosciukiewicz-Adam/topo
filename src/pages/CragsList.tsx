@@ -6,12 +6,12 @@ import { fetchCrags } from "../api/crag.ts";
 import { QueryStatus } from "../consts";
 import { ICrag } from "../interfaces";
 import DataComponentWrapper from "../sharedComponents/DataComponentWrapper.tsx";
+import Footer from "../sharedComponents/Footer.tsx";
 import Menu from "../sharedComponents/Menu.tsx";
 import Map from "../sharedComponents/Map.tsx";
 
 import search from "../assets/icons/search.svg";
 import mouse from "../assets/icons/mouse.svg";
-import Footer from "../elements/Footer.tsx";
 import drag from "../assets/icons/drag.svg";
 
 const CragsList: React.FC = (): JSX.Element => {
