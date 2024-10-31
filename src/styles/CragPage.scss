@@ -67,12 +67,19 @@
         align-items: center;
         bottom: -200px;
         z-index: 3;
+        transform-style: preserve-3d;
+        perspective: 500px;
 
         @include mobile-md {
             gap: 15px;
             width: 70%;
             bottom: -150px;
+
+            &:hover .cragImage {
+                transform: rotateY(25deg);
+            }
         }
+
     }
 
     .cragImage {
@@ -83,10 +90,21 @@
         box-sizing: border-box;
         border: 5px solid white;
         box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+        transform-style: preserve-3d;
+        perspective: 500px;
+        transition: 0.5s;
 
         @include mobile-md {
             width: calc(25% - 15px);
+
+            &:hover {
+                transform: rotateY(0deg) scale(1.15) !important;
+                z-index: 1;
+                box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+                border-color: $orange;
+            }
         }
+
     }
 
     .mapAndDescription {
@@ -106,6 +124,10 @@
             margin-top: 200px;
             border-left: 100px solid #F7770F;
             box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        &:hover~.cragImage {
+            transform: rotateY(-25deg);
         }
     }
 
