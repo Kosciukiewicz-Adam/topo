@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import mainBackgroundDesktop from "../assets/bg5.jpg";
-import mainBackgroundMobile from "../assets/bg.avif";
-import logo from "../assets/logo.png";
-import "../styles/Homepage.scss"
-import CragPreview from "../components/CragPreview.tsx";
+import "../../styles/Homepage.scss"
+import { isMobile } from "../../consts/isMobile.ts";
+import CragPreview from "./components/CragPreview.tsx";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Roles from "../components/Roles.tsx";
-import Footer from "../components/Footer.tsx";
-import ParallaxDivider from "../elements/ParalaxDivider.tsx";
-import Menu from "../components/Menu.tsx";
-import ServiceStats from "../components/ServiceStats.tsx";
-import { isMobile } from "../consts/isMobile.ts";
-import imgSrc from "../assets/tommy_caldwell.avif";
-import imgSrcMobile from "../assets/tommy.avif";
+import ParallaxDivider from "../../sharedComponents/ParalaxDivider.tsx";
+import ServiceStats from "./components/ServiceStats.tsx";
+import Footer from "../../sharedComponents/Footer.tsx";
+import Menu from "../../sharedComponents/Menu.tsx";
+import Roles from "./components/Roles.tsx";
+
+import mainBackgroundDesktop from "../../assets/bg5.jpg";
+import mainBackgroundMobile from "../../assets/bg.avif";
+import imgSrc from "../../assets/tommy_caldwell.avif";
+import imgSrcMobile from "../../assets/tommy.avif";
+import logo from "../../assets/logo.png";
 
 const Homepage: React.FC = (): JSX.Element => {
     const parallaxRef = useRef<any>(null);

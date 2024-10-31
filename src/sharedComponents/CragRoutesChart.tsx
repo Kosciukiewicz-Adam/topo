@@ -2,9 +2,9 @@ import React from "react";
 import { useQuery } from "react-query";
 import { RouteType, GradeScale, QueryStatus } from "../consts/index.ts";
 import { fetchCragRoutes } from "../api/crag.ts";
-import { IRoute } from "../interfaces";
-import Chart from "../elements/Chart.tsx";
-import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
+import { IRoute } from "../interfaces/index.ts";
+import Chart from "./Chart.tsx";
+import DataComponentWrapper from "./DataComponentWrapper.tsx";
 import "../styles/CragRoutesChart.scss"
 
 interface Props {

@@ -1,0 +1,47 @@
+@import "./settings.scss";
+
+.Sector {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 40px);
+    margin: 0 $sectionPaddingMobile;
+    align-items: center;
+    background: white;
+
+    @include mobile-md {
+        width: 70%;
+    }
+
+    .sectorImage {
+        width: 60%;
+        max-height: 500px;
+        padding: $sectionPadding 0;
+        border-radius: 10px;
+        object-fit: contain;
+    }
+
+    .routesTable,
+    tr td {
+        font-weight: 400;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        min-width: 100px;
+    }
+
+    .tableWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: $sectionPaddingMobile 0;
+
+        @include mobile-md {
+            overflow-y: unset;
+            padding: $sectionPadding 0;
+        }
+    }
+}

@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import "../styles/CragsList.scss";
-import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
+import { useNavigate } from "react-router";
 import { useQuery } from "react-query";
 import { fetchCrags } from "../api/crag.ts";
 import { QueryStatus } from "../consts";
-import Map from "../elements/Map.tsx";
 import { ICrag } from "../interfaces";
-import Menu from "../components/Menu.tsx";
-import { useNavigate } from "react-router";
-import drag from "../assets/icons/drag.svg";
-import mouse from "../assets/icons/mouse.svg";
+import DataComponentWrapper from "../sharedComponents/DataComponentWrapper.tsx";
+import Menu from "../sharedComponents/Menu.tsx";
+import Map from "../sharedComponents/Map.tsx";
+
 import search from "../assets/icons/search.svg";
-import Footer from "../components/Footer.tsx";
+import mouse from "../assets/icons/mouse.svg";
+import Footer from "../elements/Footer.tsx";
+import drag from "../assets/icons/drag.svg";
 
 const CragsList: React.FC = (): JSX.Element => {
     const { data, status } = useQuery('crags', () => fetchCrags());

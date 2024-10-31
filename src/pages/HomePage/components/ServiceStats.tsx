@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "../styles/ServiceStats.scss";
-import route from "../assets/icons/route.svg";
-import crag from "../assets/icons/crag.svg";
-import sector from "../assets/icons/sector.svg";
-import years from "../assets/icons/years.svg";
-import users from "../assets/icons/users.svg";
-import traverse from "../assets/traverse.jfif";
-import { isMobile } from "../consts/index.ts";
+import "../../../styles/ServiceStats.scss";
+import { isMobile } from "../../../consts/index.ts";
+
+import sector from "../../../assets/icons/sector.svg";
+import traverse from "../../../assets/traverse.jfif";
+import route from "../../../assets/icons/route.svg";
+import years from "../../../assets/icons/years.svg";
+import users from "../../../assets/icons/users.svg";
+import crag from "../../../assets/icons/crag.svg";
 
 interface Props {
     scrollTop: number;

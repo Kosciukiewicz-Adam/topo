@@ -17,7 +17,7 @@ const Chart: React.FC<Props> = ({
     gradeScale,
 }): JSX.Element => {
     if (!allRoutes.length) {
-        return null;
+        return <></>;
     }
 
     let routesToShow: IGradeData[] = [];

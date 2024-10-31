@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import backgroundDesktop from "../assets/larambla.jpg";
-import backgroundMobile from "../assets/rolesBg.jpg";
-import img1 from "../assets/climbingPartner.jpg";
-import img2 from "../assets/creating.webp";
-import img3 from "../assets/guidebook.jpg";
-import img4 from "../assets/topo.jpg";
-import arrow from "../assets/icons/arrow.svg";
-import { isMobile } from "../consts/index.ts";
+import "../../../styles/Roles.scss";
+import { isMobile } from "../../../consts/index.ts";
+import PolaroidCard from "../../../sharedComponents/PolaroidCard.tsx";
 
-import PolaroidCard from "../elements/PolaroidCard.tsx";
-import "../styles/Roles.scss";
+import backgroundMobile from "../../../assets/rolesBg.jpg";
+import backgroundDesktop from "../../../assets/larambla.jpg";
+import img1 from "../../../assets/climbingPartner.jpg";
+import arrow from "../../../assets/icons/arrow.svg";
+import img2 from "../../../assets/creating.webp";
+import img3 from "../../../assets/guidebook.jpg";
+import img4 from "../../../assets/topo.jpg";
 
 interface Role {
     name: string;

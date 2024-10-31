@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import "../../../styles/CragPreview.scss";
 import { Link } from "react-router-dom"
-import "../styles/CragPreview.scss";
 import { useQuery } from "react-query";
-import Map from "../elements/Map.tsx";
-import { ICrag } from "../interfaces/index.ts";
-import { fetchCrags } from "../api/crag.ts";
-import { QueryStatus } from "../consts/QueryStatus.ts";
-import DataComponentWrapper from "../elements/DataComponentWrapper.tsx";
-import drag from "../assets/icons/drag.svg";
-import mouse from "../assets/icons/mouse.svg";
-import { isMobile } from "../consts/isMobile.ts";
+import { QueryStatus, isMobile } from "../../../consts/index.ts";
+import { ICrag } from "../../../interfaces/index.ts";
+import { fetchCrags } from "../../../api/crag.ts";
+import DataComponentWrapper from "../../../sharedComponents/DataComponentWrapper.tsx";
+import Map from "../../../sharedComponents/Map.tsx";
+
+import mouse from "../../../assets/icons/mouse.svg";
+import drag from "../../../assets/icons/drag.svg";
 
 const CragPreview: React.FC = (): JSX.Element => {
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
