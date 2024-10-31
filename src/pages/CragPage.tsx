@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/CragPage.scss";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
@@ -14,14 +14,34 @@ import { IRoute } from "../interfaces/Route.ts";
 import Menu from "../components/Menu.tsx";
 
 const CragPage: React.FC = (): JSX.Element => {
-    const [selectedSector, setSelectedSector] = useState<ISector>();
     const { cragId } = useParams();
-    const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
-    const routesData = useQuery('cragRoutes', () => fetchCragRoutes(cragId || ""));
     const sectorsData = useQuery('cragSectors', () => fetchCragSectors(cragId || ""));
+    const routesData = useQuery('cragRoutes', () => fetchCragRoutes(cragId || ""));
+    const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const [selectedSector, setSelectedSector] = useState<ISector>();
+
+    const mapBackground = "#F7770F"; //#F7770F
+    const mapBorders = "#263238"; // #26323
+
+    const getSectorRoutes = (sectorId: string): IRoute[] => {
+        return routesData?.data?.filter(route => route.sectorId === sectorId) || [];
+    }
+
+    const handleScroll = () => {
+        const newScrollYPosition = window.scrollY;
+        setScrollTop(newScrollYPosition);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [])
 
     if (!routesData.data || !cragData.data || !sectorsData.data) {
-        return null;
+        return <></>;
     }
 
     if (!selectedSector && sectorsData.data.length) {
@@ -29,13 +49,6 @@ const CragPage: React.FC = (): JSX.Element => {
     }
 
     const { name, coordinates, _id, description, country } = cragData.data;
-
-    const getSectorRoutes = (sectorId: string): IRoute[] => {
-        return routesData.data.filter(route => route.sectorId === sectorId)
-    }
-
-    const mapBackground = "#F7770F"; //#F7770F
-    const mapBorders = "#263238"; // #26323
 
     return (
         <div className="CragPage">
@@ -68,7 +81,11 @@ const CragPage: React.FC = (): JSX.Element => {
 
             <div className="cragGrades">
                 <div className="sectionHeading">Distribution of grades in crag</div>
-                <Chart allRoutes={routesData.data} gradeScale={GradeScale.FRENCH} />
+                <Chart
+                    startAnimation={scrollTop > 600}
+                    gradeScale={GradeScale.FRENCH}
+                    allRoutes={routesData.data}
+                />
             </div>
 
             <img src={backgroundSrc} alt="background" className="waveImage" />
@@ -104,7 +121,11 @@ const CragPage: React.FC = (): JSX.Element => {
 
                     <img className="sectorImage" src={selectedSector.imageWithRoutes} alt="sector routes" />
 
-                    <Chart allRoutes={getSectorRoutes(selectedSector._id)} gradeScale={GradeScale.FRENCH} />
+                    <Chart
+                        allRoutes={getSectorRoutes(selectedSector._id)}
+                        startAnimation={scrollTop > 2300}
+                        gradeScale={GradeScale.FRENCH}
+                    />
 
                     <div className="tableWrapper">
                         <table className="routesTable">

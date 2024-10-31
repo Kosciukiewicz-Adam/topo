@@ -41,6 +41,8 @@
         background: #263238;
         cursor: pointer;
         position: relative;
+        height: 0px;
+        transition: 1s;
     }
 
     .amountValue {

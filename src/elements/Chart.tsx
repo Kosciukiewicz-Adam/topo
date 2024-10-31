@@ -7,9 +7,15 @@ interface Props {
     routesAmountToShow?: number;
     gradeScale: GradeScale;
     allRoutes: IRoute[];
+    startAnimation: boolean;
 }
 
-const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }): JSX.Element => {
+const Chart: React.FC<Props> = ({
+    routesAmountToShow,
+    startAnimation,
+    allRoutes,
+    gradeScale,
+}): JSX.Element => {
     if (!allRoutes.length) {
         return null;
     }
@@ -47,7 +53,13 @@ const Chart: React.FC<Props> = ({ routesAmountToShow, allRoutes, gradeScale }): 
     const maxAmountValue = Math.max.apply(Math, routesPerGradeArray.map((route) => route.amount))
 
     const getChartBarHeight = (positionAmount: number): string => {
-        return `${(positionAmount / maxAmountValue) * 100}%`
+        const value = (positionAmount / maxAmountValue) * 100;
+
+        if (!startAnimation) {
+            return "0%"
+        }
+
+        return `${value}%`
     }
 
     return (
