@@ -12,7 +12,7 @@
         width: 100%;
 
         @include mobile-md {
-            height: calc(100vh - 200px);
+            height: 75vh;
         }
 
         img {

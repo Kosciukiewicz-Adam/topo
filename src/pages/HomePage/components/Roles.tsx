@@ -12,8 +12,8 @@ import img3 from "../../../assets/guidebook.jpg";
 import img4 from "../../../assets/topo.jpg";
 
 interface Role {
-    name: string;
     description: string;
+    name: string;
     imgSrc: any;
 }
 
@@ -22,7 +22,7 @@ enum SlideChangeDir {
     NEXT = "next",
 }
 
-const Roles: React.FC = (): JSX.Element => {
+const Roles: React.FC<{ animate: boolean }> = ({ animate }): JSX.Element => {
     const [carouselSlide, setCarouselSlide] = useState<number>(0);
     const backgroundImage = isMobile() ? backgroundMobile : backgroundDesktop;
 
@@ -52,12 +52,13 @@ const Roles: React.FC = (): JSX.Element => {
     const getDesktopContent = (): JSX.Element => (
         <div className="cardsWrapper">
             {
-                roles.map(role => (
-                    <PolaroidCard {...role} key={role.name} />
+                roles.slice(0, 4).map((role, index) => (
+                    <PolaroidCard {...role} key={role.name} index={index} animate={animate} />
                 ))
             }
         </div>
     )
+
     const getMobileContent = (): JSX.Element => (
         <div className="carousel">
             <img

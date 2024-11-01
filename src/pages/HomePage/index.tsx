@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/Homepage.scss"
-import { isMobile } from "../../consts/isMobile.ts";
+import { isMobile } from "../../consts/index.ts";
 import CragPreview from "./components/CragPreview.tsx";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import ParallaxDivider from "../../sharedComponents/ParalaxDivider.tsx";
@@ -29,13 +29,15 @@ const Homepage: React.FC = (): JSX.Element => {
         }
     });
 
+    console.log(scrollTop)
+
     return (
         <div className="Homepage">
             <Menu />
             <Parallax pages={3} ref={parallaxRef}>
                 <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />
-                    <Roles />
+                    <Roles animate={scrollTop > 800} />
                     <div className="placeholder">
                         <img src={isMobile() ? imgSrcMobile : imgSrc} alt="" />
                     </div>
@@ -48,9 +50,9 @@ const Homepage: React.FC = (): JSX.Element => {
                             <h2>Biggest free rock climbing guidebook</h2>
                         </div>
                     </div>
-                    {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview />}
+                    {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview scrollTop={scrollTop} />}
                     <ParallaxDivider height="900px" mobileHeight="600px" />
-                    {isMobile() ? <CragPreview /> : <ServiceStats scrollTop={scrollTop} />}
+                    {isMobile() ? <CragPreview scrollTop={scrollTop} /> : <ServiceStats scrollTop={scrollTop} />}
                 </ParallaxLayer>
             </Parallax>
         </div>

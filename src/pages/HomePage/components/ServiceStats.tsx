@@ -20,7 +20,7 @@ interface Stat {
 }
 
 const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
-    <div className="stat">
+    <div className="stat" key={label}>
         <img src={icon} alt="" className="icon" />
         <div className="textWrapper">
             <div className="number">{number}</div>

@@ -9,7 +9,7 @@
 
 
     @include mobile-md {
-        height: 200px;
+        height: 15vh;
     }
 
     .buttonsWrapper {
@@ -30,8 +30,8 @@
         border-radius: 100vmax;
 
         @include mobile-md {
-            width: 25px;
-            height: 25px;
+            width: 22px;
+            height: 22px;
             padding: 10px;
         }
     }

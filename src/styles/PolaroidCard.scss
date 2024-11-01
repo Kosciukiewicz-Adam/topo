@@ -1,34 +1,91 @@
 @import "./settings.scss";
 
+$cardWidth: 218px;
+$cardWidthSmall: 180px;
+$gap: 50px;
+
 .PolaroidCard {
     display: flex;
     align-items: center;
-    width: 200px;
-    height: 280px;
+    width: $cardWidthSmall;
+    height: 240px;
     justify-content: center;
+    transition: 0.2s;
     position: relative;
+
+    @include desktop-lg {
+        width: $cardWidth;
+        height: 280px;
+    }
+
+    @include mobile-md {
+        position: absolute;
+
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+            left: calc(50% - ($cardWidthSmall / 2));
+
+            @include desktop-lg {
+                left: calc(50% - ($cardWidth / 2));
+            }
+        }
+
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            right: calc(50% - ($cardWidthSmall / 2));
+
+            @include desktop-lg {
+                right: calc(50% - ($cardWidth / 2));
+            }
+        }
+    }
+
+
+    &:hover {
+
+        .back,
+        .front {
+            border: 4px solid $orange;
+        }
+    }
 
     .front,
     .back {
-        width: 200px;
-        height: 280px;
+        width: 162px;
+        height: 240px;
         background: white;
         will-change: transform, opacity;
         position: absolute;
         cursor: pointer;
         padding: 5px;
         border-radius: 10px;
+        border: 4px solid white;
+        transition: 0.3s border;
+
+        @include desktop-lg {
+            width: 200px;
+            height: 280px;
+        }
     }
 
     .back {
         padding: 5px 10px;
+        width: 152px;
+
+        @include desktop-lg {
+            width: 190px;
+        }
     }
 
     .image {
-        width: 200px;
-        height: 220px;
+        width: 100%;
+        height: 180px;
         object-fit: cover;
         border-radius: 10px;
+
+        @include desktop-lg {
+            height: 220px;
+        }
     }
 
     .name {
@@ -42,7 +99,19 @@
 
     .backName {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
+
+        @include desktop-lg {
+            font-size: 18px;
+        }
+    }
+
+    .description {
+        font-size: 14px;
+
+        @include desktop-lg {
+            font-size: 16px;
+        }
     }
 
     .clickIcon {
@@ -59,4 +128,5 @@
             background-color: $orangeActive;
         }
     }
+
 }

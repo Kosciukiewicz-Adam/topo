@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/CragPreview.scss";
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
@@ -11,10 +11,21 @@ import Map from "../../../sharedComponents/Map.tsx";
 import mouse from "../../../assets/icons/mouse.svg";
 import drag from "../../../assets/icons/drag.svg";
 
-const CragPreview: React.FC = (): JSX.Element => {
+interface Props {
+    scrollTop: number;
+}
+
+const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
+    const [showAnimation, setShowAnimation] = useState<boolean>(false);
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
     const { status, data } = useQuery('crags', fetchCrags);
     const maxMobileDescriptionLength = 70;
+
+    useEffect(() => {
+        if (scrollTop > 350 && !showAnimation) {
+            setShowAnimation(true);
+        }
+    }, [scrollTop, showAnimation])
 
     if (!selectedCrag && data) {
         setSelectedCrag(data[0])
@@ -24,6 +35,7 @@ const CragPreview: React.FC = (): JSX.Element => {
         const cragToSelect = data?.find(crag => crag._id === cragId);
 
         if (cragToSelect) {
+            setShowAnimation(false);
             setSelectedCrag(cragToSelect);
         }
     }
@@ -47,8 +59,14 @@ const CragPreview: React.FC = (): JSX.Element => {
                 <h2 className="sectionHeading">Discover climbing everywhere around the world</h2>
                 <div className="sectionContent">
 
-                    <div className="cragDetails">
-                        <h2 className="cragHeader">{`${selectedCrag?.name} | ${selectedCrag?.country}`}</h2>
+                    <div
+                        style={showAnimation ? { animation: "slideUp forwards 0.7s" } : {}}
+                        onClick={() => setShowAnimation(prev => (!prev))}
+                        className="cragDetails"
+                    >
+                        <h2 className="cragHeader">
+                            {`${selectedCrag?.name} | ${selectedCrag?.country}`}
+                        </h2>
 
                         <div className="desctiption">
                             {selectedCrag?.description && getDescription(selectedCrag.description)}

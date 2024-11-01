@@ -34,9 +34,13 @@
         font-size: 22px;
         text-align: center;
 
+        @include desktop-lg {
+            font-size: 35px;
+        }
+
         @include mobile-md {
             width: 70%;
-            font-size: 35px;
+            font-size: 30px;
             text-align: left;
         }
     }
@@ -50,10 +54,14 @@
         justify-content: space-between;
 
         @include mobile-md {
-            width: 70%;
+            width: 80%;
             font-size: 35px;
-            padding-top: 100px;
+            padding-top: 50px;
             flex-direction: row;
+        }
+
+        @include desktop-lg {
+            width: 70%;
         }
     }
 
@@ -63,6 +71,9 @@
         flex-direction: column;
         align-items: center;
         padding-bottom: 20px;
+        position: relative;
+        top: 200px;
+        opacity: 0;
 
         @include mobile-md {
             width: calc(50% - 25px);
@@ -76,10 +87,16 @@
         padding: 0 5px 20px 5px;
         text-align: justify;
         font-size: 14px;
+        max-height: 320px;
+        overflow-y: scroll;
 
         @include mobile-md {
             padding: 0 0 20px 0;
             text-align: center;
+            font-size: 14px;
+        }
+
+        @include desktop-lg {
             font-size: 16px;
         }
     }
@@ -183,5 +200,17 @@
         @include mobile-md {
             display: block;
         }
+    }
+}
+
+@keyframes slideUp {
+    from {
+        top: 100px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0px;
+        opacity: 1;
     }
 }

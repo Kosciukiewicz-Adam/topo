@@ -19,7 +19,11 @@
     .contentwrapper {
         display: flex;
         flex-direction: row;
-        width: 70%;
+        width: 85%;
+
+        @include desktop-lg {
+            width: 70%;
+        }
     }
 
     .statsWrapper {
@@ -78,7 +82,13 @@
         box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
 
         @include mobile-md {
+            height: 70px;
+            width: 180px;
+        }
+
+        @include desktop-lg {
             height: 80px;
+            width: 200px;
         }
 
         &:nth-of-type(2) {
@@ -96,6 +106,10 @@
         font-weight: 600;
 
         @include mobile-md {
+            font-size: 25px;
+        }
+
+        @include desktop-lg {
             font-size: 30px;
         }
     }
@@ -111,7 +125,13 @@
         width: 70%;
 
         @include mobile-md {
+            font-size: 30px;
+            width: 85%;
+        }
+
+        @include desktop-lg {
             font-size: 35px;
+            width: 70%;
         }
     }
 
