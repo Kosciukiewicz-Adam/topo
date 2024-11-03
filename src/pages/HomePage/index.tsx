@@ -29,15 +29,13 @@ const Homepage: React.FC = (): JSX.Element => {
         }
     });
 
-    console.log(scrollTop)
-
     return (
         <div className="Homepage">
             <Menu />
             <Parallax pages={3} ref={parallaxRef}>
                 <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />
-                    <Roles animate={scrollTop > 800} />
+                    <Roles scrollTop={scrollTop} />
                     <div className="placeholder">
                         <img src={isMobile() ? imgSrcMobile : imgSrc} alt="" />
                     </div>

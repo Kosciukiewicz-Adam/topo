@@ -22,7 +22,7 @@ enum SlideChangeDir {
     NEXT = "next",
 }
 
-const Roles: React.FC<{ animate: boolean }> = ({ animate }): JSX.Element => {
+const Roles: React.FC<{ scrollTop: number }> = ({scrollTop}): JSX.Element => {
     const [carouselSlide, setCarouselSlide] = useState<number>(0);
     const backgroundImage = isMobile() ? backgroundMobile : backgroundDesktop;
 
@@ -53,7 +53,7 @@ const Roles: React.FC<{ animate: boolean }> = ({ animate }): JSX.Element => {
         <div className="cardsWrapper">
             {
                 roles.slice(0, 4).map((role, index) => (
-                    <PolaroidCard {...role} key={role.name} index={index} animate={animate} />
+                    <PolaroidCard {...role} key={role.name} index={index} scrollTop={scrollTop} />
                 ))
             }
         </div>

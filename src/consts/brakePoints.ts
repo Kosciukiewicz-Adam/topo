@@ -7,7 +7,6 @@ export const isMobile = (): boolean => {
 }
 
 export const isDesktopLg = (): boolean => {
-    console.log(SCREEN_WIDTH, DESKTOP_LG)
     return SCREEN_WIDTH >= DESKTOP_LG;
 }
 

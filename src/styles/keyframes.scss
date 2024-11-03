@@ -2,106 +2,137 @@ $cardWidth: 218px;
 $cardWidthSmall: 180px;
 $gap: 50px;
 
+
+///////////////////////////////////// left 1
+
+@mixin firstLeftOnStack($cardSize) {
+    left: calc(50% - ($cardSize * 0.5));
+    transform: rotate(0deg);
+    top: 0;
+}
+
+@mixin firstLeftUnfolded($cardSize) {
+    top: 100px;
+    left: calc(50% - ($cardSize * 2) - ($gap * 1.5));
+    transform: rotate(-15deg);
+}
+
 @keyframes reveal_1 {
     0% {
-        left: calc(50% - ($cardWidthSmall * 0.5));
-        transform: rotate(0deg);
-        top: 0;
+        @include firstLeftOnStack($cardWidthSmall);
     }
 
     100% {
-        top: 100px;
-        left: calc(50% - ($cardWidthSmall * 2) - ($gap * 1.5));
-        transform: rotate(-15deg);
+        @include firstLeftUnfolded($cardWidthSmall);
     }
 }
 
 @keyframes reveal_1_lg {
     0% {
-        left: calc(50% - ($cardWidth * 0.5));
-        transform: rotate(0deg);
-        top: 0;
+        @include firstLeftOnStack($cardWidth);
     }
 
     100% {
-        top: 100px;
-        left: calc(50% - ($cardWidth * 2) - ($gap * 1.5));
-        transform: rotate(-15deg);
+        @include firstLeftUnfolded($cardWidth);
     }
+}
+
+///////////////////////////////////// left 2
+
+@mixin secondLeftOnStack($cardSize) {
+    left: calc(50% - ($cardSize * 0.5));
+    transform: rotate(0deg);
+}
+
+@mixin secondLeftUnfolded($cardSize) {
+    left: calc(50% - ($cardSize * 1) - ($gap * 0.5));
+    transform: rotate(-5deg);
 }
 
 @keyframes reveal_2 {
     0% {
-        left: calc(50% - ($cardWidthSmall * 0.5));
-        transform: rotate(0deg);
+        @include secondLeftOnStack($cardWidthSmall);
     }
 
     100% {
-        left: calc(50% - ($cardWidthSmall * 1) - ($gap * 0.5));
-        transform: rotate(-5deg);
+        @include secondLeftUnfolded($cardWidthSmall);
     }
 }
 
 @keyframes reveal_2_lg {
     0% {
-        left: calc(50% - ($cardWidth * 0.5));
-        transform: rotate(0deg);
+        @include secondLeftOnStack($cardWidth);
     }
 
     100% {
-        left: calc(50% - ($cardWidth * 1) - ($gap * 0.5));
-        transform: rotate(-5deg);
+        @include secondLeftUnfolded($cardWidth);
     }
 }
 
+///////////////////////////////////// right 1
+
+@mixin firstRightOnStack($cardSize) {
+    right: calc(50% - ($cardSize * 0.5));
+    transform: rotate(0deg);
+}
+
+@mixin firstRightUnfolded($cardSize) {
+    right: calc(50% - ($cardSize * 1) - ($gap * 0.5));
+    transform: rotate(5deg);
+}
+
+
 @keyframes reveal_3 {
     0% {
-        right: calc(50% - ($cardWidthSmall * 0.5));
-        transform: rotate(0deg);
+        @include firstRightOnStack($cardWidthSmall);
     }
 
     100% {
-        right: calc(50% - ($cardWidthSmall * 1) - ($gap * 0.5));
-        transform: rotate(5deg);
+        @include firstRightUnfolded($cardWidthSmall);
     }
 }
 
 @keyframes reveal_3_lg {
     0% {
-        right: calc(50% - ($cardWidth * 0.5));
-        transform: rotate(0deg);
+        @include firstRightOnStack($cardWidth);
     }
 
     100% {
-        right: calc(50% - ($cardWidth * 1) - ($gap * 0.5));
-        transform: rotate(5deg);
+        @include firstRightUnfolded($cardWidth);
     }
 }
 
+///////////////////////////////////// right 2
+
+@mixin secondRightOnStack($cardSize) {
+    right: calc(50% - ($cardSize * 0.5));
+    transform: rotate(0deg);
+    top: 0;
+}
+
+@mixin secondRightUnfolded($cardSize) {
+    right: calc(50% - ($cardSize * 2) - ($gap * 1.5));
+    transform: rotate(15deg);
+    top: 100px;
+}
+
+
 @keyframes reveal_4 {
     0% {
-        right: calc(50% - ($cardWidthSmall * 0.5));
-        transform: rotate(0deg);
-        top: 0;
+        @include secondRightOnStack($cardWidthSmall);
     }
 
     100% {
-        right: calc(50% - ($cardWidthSmall * 2) - ($gap * 1.5));
-        transform: rotate(15deg);
-        top: 100px;
+        @include secondRightUnfolded($cardWidthSmall);
     }
 }
 
 @keyframes reveal_4_lg {
     0% {
-        right: calc(50% - ($cardWidth * 0.5));
-        transform: rotate(0deg);
-        top: 0;
+        @include secondRightOnStack($cardWidth);
     }
 
     100% {
-        right: calc(50% - ($cardWidth * 2) - ($gap * 1.5));
-        transform: rotate(15deg);
-        top: 100px;
+        @include secondRightUnfolded($cardWidth);
     }
 }
