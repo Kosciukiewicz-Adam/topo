@@ -8,11 +8,11 @@
     position: relative;
 
     .placeholder {
-        height: calc(100vh - 150px);
+        height: calc(100vh - $footerHeightMobile);
         width: 100%;
 
         @include mobile-md {
-            height: 75vh;
+            height: calc(100vh - $footerHeight);
         }
 
         img {

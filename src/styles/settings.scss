@@ -13,6 +13,8 @@ $orangeActive: #f79a0f;
 $sectionPadding: 50px;
 $sectionPaddingMobile: 20px;
 $maxPageWidth: 1200px;
+$footerHeight: 15vh;
+$footerHeightMobile: 15vh;
 
 @mixin mobile-md {
     @media (min-width: 750px) {

@@ -41,7 +41,7 @@ const Homepage: React.FC = (): JSX.Element => {
                     </div>
                     <Footer />
                 </ParallaxLayer>
-                <ParallaxLayer speed={0.8}>
+                <ParallaxLayer speed={0.9}>
                     <div className="header">
                         <div className="headerText">
                             <img src={logo} alt='logo' className="logo" />
@@ -49,7 +49,7 @@ const Homepage: React.FC = (): JSX.Element => {
                         </div>
                     </div>
                     {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview scrollTop={scrollTop} />}
-                    <ParallaxDivider height="900px" mobileHeight="600px" />
+                    <ParallaxDivider height="105vh" mobileHeight="100vh" />
                     {isMobile() ? <CragPreview scrollTop={scrollTop} /> : <ServiceStats scrollTop={scrollTop} />}
                 </ParallaxLayer>
             </Parallax>

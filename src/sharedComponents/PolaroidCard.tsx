@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/PolaroidCard.scss";
 import { useSpring, a } from '@react-spring/web';
-import { isDesktopLg } from "../consts/index.ts";
 import turnaround from "../assets/icons/turnaround.svg";
 
 interface Props {
@@ -17,7 +16,6 @@ const PolaroidCard: React.FC<Props> = ({
 }): JSX.Element => {
     const [cardsState, setCardsState] = useState<"stack" | "unfolded">("stack");
     const [flipped, setFlipped] = useState<boolean>(false);
-    const [animation, setAnimation] = useState<any>()
 
     const { transform, opacity } = useSpring({
         opacity: flipped ? 1 : 0,
@@ -26,26 +24,15 @@ const PolaroidCard: React.FC<Props> = ({
     });
 
     const frontStyle = { opacity: opacity.to(o => 1 - o), transform };
-    const animationName = `reveal_${(index || 0) + 1}${isDesktopLg() ? "_lg" : ""}`;
-
-    const inlineStyles: any = {
-        animation: `${animationName} 1s forwards`,
-
-    };
-
 
     useEffect(() => {
         if (scrollTop === undefined) {
             return;
         }
 
-        setAnimation({});
-
         if (scrollTop < 800) {
-            // setAnimation({ ...inlineStyles, animationDirection: "reverse" });
-            // setCardsState("stack");
+            setCardsState("stack");
         } else if (scrollTop > 800) {
-            setAnimation({ ...inlineStyles, animationDirection: "normal" });
             setCardsState("unfolded");
         }
 
@@ -57,7 +44,7 @@ const PolaroidCard: React.FC<Props> = ({
         <div
             onClick={() => setFlipped(!flipped)}
             className={componentClassName}
-            style={animation}
+        //style={animation}
         >
             <a.div
                 style={frontStyle}

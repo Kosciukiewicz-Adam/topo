@@ -8,15 +8,17 @@ $gap: 50px;
 .PolaroidCard {
     display: flex;
     align-items: center;
-    width: $cardWidthSmall;
-    height: 240px;
+    height: 280px;
+    width: $cardWidth;
     justify-content: center;
-    transition: 0.2s;
+    transition: 0.7s;
     position: relative;
 
     @include mobile-md {
         position: absolute;
         top: 0;
+        height: 240px;
+        width: $cardWidthSmall;
 
         &.stack {
 
@@ -75,14 +77,14 @@ $gap: 50px;
     }
 
     @include desktop-lg {
-        width: $cardWidth;
         height: 280px;
+        width: $cardWidth;
     }
 
     .front,
     .back {
-        width: 162px;
-        height: 240px;
+        width: 200px;
+        height: 280px;
         background: white;
         will-change: transform, opacity;
         position: absolute;
@@ -90,6 +92,11 @@ $gap: 50px;
         padding: 5px;
         border-radius: 10px;
         transition: 0.3s border;
+
+        @include mobile-md {
+            width: 162px;
+            height: 240px;
+        }
 
         @include desktop-lg {
             width: 200px;
@@ -99,7 +106,11 @@ $gap: 50px;
 
     .back {
         padding: 5px 10px;
-        width: 152px;
+        width: 190px;
+
+        @include mobile-md {
+            width: 152px;
+        }
 
         @include desktop-lg {
             width: 190px;
@@ -108,9 +119,13 @@ $gap: 50px;
 
     .image {
         width: 100%;
-        height: 180px;
+        height: 220px;
         object-fit: cover;
         border-radius: 10px;
+
+        @include mobile-md {
+            height: 180px;
+        }
 
         @include desktop-lg {
             height: 220px;

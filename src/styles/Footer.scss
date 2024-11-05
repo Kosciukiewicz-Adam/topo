@@ -1,7 +1,7 @@
 @import "./settings.scss";
 
 .Footer {
-    height: 150px;
+    height: $footerHeightMobile;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
 
 
     @include mobile-md {
-        height: 15vh;
+        height: $footerHeight;
     }
 
     .buttonsWrapper {
