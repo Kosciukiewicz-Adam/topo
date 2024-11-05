@@ -14,6 +14,7 @@ import Sector from "./components/Sector.tsx";
 
 import backgroundSrc from "../../assets/background.svg";
 import wave from "../../assets/wave.svg";
+import test from "../../assets/test2.jpg";
 
 const CragPage: React.FC = (): JSX.Element => {
     const { cragId } = useParams();
@@ -54,9 +55,9 @@ const CragPage: React.FC = (): JSX.Element => {
 
     return (
         <div className="CragPage">
-            <Menu />
+            <Menu scrollTop={scrollTop} />
             <div className="landingPage">
-                <img src={wave} className="wave" />
+                <img src={test} className="wave" />
 
                 <div className="header">
                     <h1 className="cargName">{name.toUpperCase()}</h1>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../../../styles/CragPreview.scss";
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
-import { QueryStatus, isMobile } from "../../../consts/index.ts";
+import { QueryStatus } from "../../../consts/index.ts";
+import { isMobile} from "../../../utils/brakePoints.ts"
 import { ICrag } from "../../../interfaces/index.ts";
 import { fetchCrags } from "../../../api/crag.ts";
 import DataComponentWrapper from "../../../sharedComponents/DataComponentWrapper.tsx";

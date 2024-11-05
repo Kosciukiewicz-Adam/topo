@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../../styles/Roles.scss";
-import { isMobile } from "../../../consts/index.ts";
+import { isMobile } from "../../../utils/brakePoints.ts"
 import PolaroidCard from "../../../sharedComponents/PolaroidCard.tsx";
 
 import backgroundMobile from "../../../assets/rolesBg.jpg";
@@ -22,7 +22,7 @@ enum SlideChangeDir {
     NEXT = "next",
 }
 
-const Roles: React.FC<{ scrollTop: number }> = ({scrollTop}): JSX.Element => {
+const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
     const [carouselSlide, setCarouselSlide] = useState<number>(0);
     const backgroundImage = isMobile() ? backgroundMobile : backgroundDesktop;
 

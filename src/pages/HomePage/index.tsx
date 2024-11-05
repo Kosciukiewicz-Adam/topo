@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/Homepage.scss"
-import { isMobile } from "../../consts/index.ts";
+import { isMobile } from "../../utils/brakePoints.ts"
 import CragPreview from "./components/CragPreview.tsx";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import ParallaxDivider from "../../sharedComponents/ParalaxDivider.tsx";
@@ -31,7 +31,7 @@ const Homepage: React.FC = (): JSX.Element => {
 
     return (
         <div className="Homepage">
-            <Menu />
+            <Menu scrollTop={scrollTop} />
             <Parallax pages={3} ref={parallaxRef}>
                 <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />

@@ -3,6 +3,7 @@ import "../../../styles/Sector.scss";
 import { ISector, IRoute } from "../../../interfaces";
 import { GradeScale } from "../../../consts/index.ts";
 import Chart from "../../../sharedComponents/Chart.tsx";
+import { getGradeDifficulty } from "../../../utils/gradeDifficulty.ts";
 
 type Props = {
     getSectorRoutes: (id: string) => IRoute[],
@@ -16,6 +17,8 @@ const Sector: React.FC<Props> = ({
     name,
     _id,
 }): JSX.Element => {
+    getGradeDifficulty("7c+")
+
     return (
         <div className="Sector">
             <h2 className="sectionHeading">{name}</h2>
@@ -42,7 +45,11 @@ const Sector: React.FC<Props> = ({
                             <tr key={route?.name}>
                                 <td>{index + 1}</td>
                                 <td>{route?.name}</td>
-                                <td>{route?.grade}</td>
+                                <td>
+                                    <div
+                                        className={`grade ${getGradeDifficulty(route?.grade)}`}
+                                    >{route?.grade}</div>
+                                </td>
                                 <td>{route?.length}</td>
                                 <td>{route?.author}</td>
                             </tr>

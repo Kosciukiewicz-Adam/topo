@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../../styles/ServiceStats.scss";
-import { isMobile } from "../../../consts/index.ts";
+import { isMobile } from "../../../utils/brakePoints.ts"
 
 import sector from "../../../assets/icons/sector.svg";
 import traverse from "../../../assets/traverse.jfif";
