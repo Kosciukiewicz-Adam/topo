@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api/crag.ts";
 import { ISector, IRoute } from "../../interfaces";
 import { GradeScale } from "../../consts/index.ts";
+import SectorsSelector from "./components/SectorsSelector.tsx";
 import SectorsGallery from "./components/SectorsGallery.tsx";
 import Footer from "../../sharedComponents/Footer.tsx";
 import Chart from "../../sharedComponents/Chart.tsx";
@@ -103,6 +104,13 @@ const CragPage: React.FC = (): JSX.Element => {
 
             {selectedSector &&
                 <Sector
+                    sectorsSelector={
+                        <SectorsSelector
+                            selectedSectorId={selectedSector._id}
+                            setSelectedSector={setSelectedSector}
+                            sectors={sectorsData.data}
+                        />
+                    }
                     getSectorRoutes={getSectorRoutes}
                     scrollTop={scrollTop}
                     {...selectedSector}

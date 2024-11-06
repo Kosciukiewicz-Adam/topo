@@ -3,7 +3,7 @@ import "../../../styles/CragPreview.scss";
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
 import { QueryStatus } from "../../../consts/index.ts";
-import { isMobile} from "../../../utils/brakePoints.ts"
+import { isMobile } from "../../../utils/brakePoints.ts"
 import { ICrag } from "../../../interfaces/index.ts";
 import { fetchCrags } from "../../../api/crag.ts";
 import DataComponentWrapper from "../../../sharedComponents/DataComponentWrapper.tsx";
@@ -55,7 +55,12 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     }
 
     return (
-        <DataComponentWrapper queryStatus={status as QueryStatus}>
+        <DataComponentWrapper
+            queryStatus={status as QueryStatus}
+            customLoader={
+                <div className="CragPeview"></div>
+            }
+        >
             <div className="CragPreview">
                 <h2 className="sectionHeading">Discover climbing everywhere around the world</h2>
                 <div className="sectionContent">

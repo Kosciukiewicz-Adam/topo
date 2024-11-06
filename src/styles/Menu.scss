@@ -16,7 +16,9 @@
     background: rgba(0, 0, 0, 1);
 
     &.homepage {
-        width: calc(100% - 217px);
+        @include mobile-md {
+            padding-left: 83px;
+        }
     }
 
     &.transparent {

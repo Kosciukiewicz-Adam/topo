@@ -54,6 +54,16 @@
         left: -8px;
         border-radius: 100vmax;
         text-align: center;
+        animation: re
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
     }
 
+    to {
+        opacity: 1;
+    }
 }

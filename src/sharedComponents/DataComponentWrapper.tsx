@@ -4,12 +4,13 @@ import { QueryStatus } from "../consts/QueryStatus.ts";
 interface Props {
     queryStatus: QueryStatus;
     children: JSX.Element;
+    customLoader?: JSX.Element;
 }
 
-const DataComponentWrapper: React.FC<Props> = ({ queryStatus, children }): JSX.Element => {
+const DataComponentWrapper: React.FC<Props> = ({ queryStatus, children, customLoader }): JSX.Element => {
     switch (queryStatus) {
         case QueryStatus.LOADING:
-            return <div>Loader</div>
+            return customLoader || <div>Loader</div>;
         case QueryStatus.SUCCESS:
             return children;
         case QueryStatus.ERROR:

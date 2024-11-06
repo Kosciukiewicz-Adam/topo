@@ -31,7 +31,7 @@ const Homepage: React.FC = (): JSX.Element => {
 
     return (
         <div className="Homepage">
-            <Menu scrollTop={scrollTop} />
+            <Menu scrollTop={scrollTop} homepage={true} />
             <Parallax pages={3} ref={parallaxRef}>
                 <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />

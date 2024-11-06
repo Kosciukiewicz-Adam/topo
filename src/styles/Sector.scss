@@ -2,22 +2,128 @@
 
 .Sector {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: calc(100% - 40px);
-    margin: 0 $sectionPaddingMobile;
-    align-items: center;
+    margin: 50px $sectionPaddingMobile;
     background: white;
+    justify-content: space-between;
+    gap: 20px;
 
     @include mobile-md {
+        width: 80%;
+    }
+
+    @mixin desktop-lg {
         width: 70%;
     }
 
+    .main {
+        width: calc(100% - 80px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include mobile-md {
+            width: calc(100% - 120px);
+        }
+    }
+
+    .changeSector {
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+
+        @include mobile-md {
+            width: 100px;
+        }
+    }
+
     .sectorImage {
-        width: 60%;
+        width: 100%;
         max-height: 500px;
-        margin: $sectionPadding 0;
+        margin: $sectionPaddingMobile 0;
         border-radius: 20px;
         object-fit: contain;
+
+        @include mobile-md {
+            width: 60%;
+            margin: $sectionPadding 0;
+        }
+    }
+
+    .information {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @include mobile-md {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    .chartWrapper {
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .Chart .chartBarsWrapper {
+        height: 200px;
+    }
+
+    .header {
+        color: black;
+        font-size: 20px;
+        height: 30px;
+        width: 100%;
+    }
+
+    .legend,
+    .characteristics {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .label {
+        width: 100%;
+        height: 30px;
+        display: grid;
+        place-content: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        height: 30px;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+    .range {
+        width: 100px;
+        height: 100%;
+    }
+
+    .routesTable {
+        width: 100%;
     }
 
     .routesTable,
@@ -25,11 +131,18 @@
         font-weight: 400;
         text-align: center;
         font-size: 14px;
+
+        @include mobile-md {
+            font-size: 16px;
+        }
     }
 
     th,
     td {
         min-width: 100px;
+        width: 20%;
+        height: 30px;
+        padding: 5px 0;
     }
 
     .tableWrapper {
@@ -37,7 +150,7 @@
         display: flex;
         justify-content: center;
         overflow-y: scroll;
-        padding: $sectionPaddingMobile 0;
+        padding: $sectionPaddingMobile 10px;
 
         @include mobile-md {
             overflow-y: unset;
@@ -45,27 +158,43 @@
         }
     }
 
-    .grade {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
+    .titleRow {
+        background-color: black;
         color: white;
     }
 
-    .begginer {
+    .grade {
+        width: 70%;
+        height: 100%;
+        margin-left: 15%;
+        border-radius: 10px;
+        color: white;
+        display: grid;
+        place-content: center;
+    }
+
+    .grade,
+    .range {
+        border-radius: 10px;
+        color: white;
+        display: grid;
+        place-content: center;
+    }
+
+    .beginner {
         background: green;
     }
 
-    .easy {
+    .intermediate {
         background: yellow;
         color: black;
     }
 
-    .intermediate {
+    .advanced {
         background: blue;
     }
 
-    .advanced {
+    .master {
         background: red;
     }
 
@@ -78,5 +207,6 @@
 
     .elite {
         background: black;
+        color: white;
     }
 }
