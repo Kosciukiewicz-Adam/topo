@@ -28,10 +28,6 @@ const CragPage: React.FC = (): JSX.Element => {
     const mapBackground = "#F7770F";
     const mapBorders = "#263238";
 
-    const getSectorRoutes = (sectorId: string): IRoute[] => {
-        return routesData?.data?.filter(route => route.sectorId === sectorId) || [];
-    }
-
     const handleScroll = () => {
         const newScrollYPosition = window.scrollY;
         setScrollTop(newScrollYPosition);
@@ -62,7 +58,7 @@ const CragPage: React.FC = (): JSX.Element => {
 
                 <div className="header">
                     <h1 className="cargName">{name.toUpperCase()}</h1>
-                    <div className="stats">{`${country} | ${routesData.data.length} routes`}</div>
+                    <div className="stats">{`${country} | ${cragData.data?.routesAmount} routes`}</div>
                 </div>
 
 
@@ -96,7 +92,7 @@ const CragPage: React.FC = (): JSX.Element => {
 
             <SectorsGallery
                 setSelectedSector={setSelectedSector}
-                getSectorRoutes={getSectorRoutes}
+                getSectorRoutes={() => []}
                 sectors={sectorsData.data}
             />
 
@@ -111,7 +107,6 @@ const CragPage: React.FC = (): JSX.Element => {
                             sectors={sectorsData.data}
                         />
                     }
-                    getSectorRoutes={getSectorRoutes}
                     scrollTop={scrollTop}
                     {...selectedSector}
                 />

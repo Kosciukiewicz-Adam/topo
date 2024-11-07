@@ -10,7 +10,6 @@ interface Props {
 
 const SectorsGallery: React.FC<Props> = ({
     setSelectedSector,
-    getSectorRoutes,
     sectors,
 }): JSX.Element => {
     return (
@@ -28,9 +27,11 @@ const SectorsGallery: React.FC<Props> = ({
                             <div className="name">
                                 {sector.name}
                             </div>
-                            <div className="info">
-                                {`${getSectorRoutes(sector._id).length} routes`}
-                            </div>
+                            {sector?.routesAmount && (
+                                <div className="info">
+                                    {`${sector.routesAmount} routes`}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}

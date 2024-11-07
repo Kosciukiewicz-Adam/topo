@@ -4,4 +4,5 @@ export interface ISector {
     imageWithRoutes: string;
     cragId: string;
     _id: string;
+    routesAmount?: string;
 }

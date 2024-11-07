@@ -1,6 +1,8 @@
 import { ICrag, IRoute, ISector } from "../interfaces";
 
-const url = "https://topo-server.onrender.com"
+//const url = "https://topo-server.onrender.com";
+
+const url = "http://localhost:4000"
 
 export const fetchCrags = async (): Promise<ICrag[]> => {
     const res = await fetch(`${url}/crags`);

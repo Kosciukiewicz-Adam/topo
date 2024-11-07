@@ -2,8 +2,8 @@ import React from "react";
 import "./styles/App.scss"
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { HashRouter, Routes, Route } from "react-router-dom";
+import CragsList from "./pages/CragsList/index.tsx";
 import CragPage from "./pages/CragPage/index.tsx";
-import CragsList from "./pages/CragsList.tsx";
 import Homepage from "./pages/HomePage/index.tsx";
 
 

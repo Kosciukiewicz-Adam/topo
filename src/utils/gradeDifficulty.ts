@@ -19,6 +19,10 @@ const gradesRangesBorders: Record<GradeDifficulty, string> = {
 }
 
 export const getSectorDifficultyLevel = (routes: IRoute[]): string => {
+    if (!routes.length) {
+        return "";
+    }
+
     const routesDifficulty = routes.map(route => getGradeDifficulty(route.grade));
     let occurences: Partial<Record<GradeDifficulty, number>> = {};
 
