@@ -5,8 +5,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: calc(100% - 200px);
-    padding: 0 100px;
+    width: calc(100vw - 20px);
+    padding: 0 20px;
     height: 50px;
     position: fixed;
     top: 0;
@@ -14,6 +14,11 @@
     z-index: 1000;
     transition: 0.7s;
     background: rgba(0, 0, 0, 1);
+
+    @include mobile-md {
+        width: calc(100vw - 200px);
+        padding: 0 100px;
+    }
 
     &.homepage {
         @include mobile-md {

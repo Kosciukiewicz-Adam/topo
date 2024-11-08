@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { useQuery } from "react-query";
 import { fetchCrags } from "../../api/crag.ts";
 import { QueryStatus } from "../../consts/index.ts";
-import { ICrag } from "../../interfaces/index.ts";
 import DataComponentWrapper from "../../sharedComponents/DataComponentWrapper.tsx";
 import Footer from "../../sharedComponents/Footer.tsx";
 import Menu from "../../sharedComponents/Menu.tsx";
@@ -22,9 +21,10 @@ const CragsList: React.FC = (): JSX.Element => {
     const [scrollTop, setScrollTop] = useState<number>(0);
     const navigate = useNavigate();
 
-    const countriesList: string[] = [];
+    const formatedSearchQuery = searchQuery.trim().toLocaleLowerCase()
+
     const searchHints = data?.filter(crag =>
-        crag.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())).map(({ _id, name }) =>
+        crag.name.trim().toLocaleLowerCase().includes(formatedSearchQuery)).map(({ _id, name }) =>
             ({ name, _id }));
 
     const handleScroll = () => {
@@ -50,32 +50,6 @@ const CragsList: React.FC = (): JSX.Element => {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [])
-
-    data?.forEach(crag => {
-        if (!countriesList.includes(crag.country)) {
-            countriesList.push(crag.country);
-        }
-    })
-
-    const getCountryLabel = (country: string): string => {
-        return `${country} | ${filteredCrags(country).length} ${filteredCrags(country).length > 1 ? 'crags' : 'crag'}`
-    }
-
-    const filteredCrags = (country?: string): ICrag[] => {
-        return data?.filter(crag => {
-            let fitsCriteria: boolean = true;
-
-            if (searchQuery) {
-                fitsCriteria = crag.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase());
-            }
-
-            if (country && fitsCriteria) {
-                return crag.country === country;
-            }
-
-            return fitsCriteria;
-        }) || [];
-    }
 
     const showHints = !!searchHints?.length && !!searchQuery.length;
 
@@ -119,9 +93,8 @@ const CragsList: React.FC = (): JSX.Element => {
                 </div>
 
                 <List
-                    getCountryLabel={getCountryLabel}
-                    countriesList={countriesList}
-                    filteredCrags={filteredCrags}
+                    searchQuery={formatedSearchQuery}
+                    crags={data || []}
                 />
                 <Footer />
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Menu.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const Menu: React.FC<Props> = ({ scrollTop, homepage }): JSX.Element => {
+    const navigate = useNavigate();
     const menuOptions: { name: string, link: string }[] = [
         { name: "Home", link: "/" },
         { name: "Crags", link: "/crags" },
@@ -18,7 +19,7 @@ const Menu: React.FC<Props> = ({ scrollTop, homepage }): JSX.Element => {
 
     return (
         <div className={className}>
-            <img src={logo} alt="menu logo" className="menuLogo" />
+            <img src={logo} alt="menu logo" className="menuLogo" onClick={() => navigate("/")} />
             <div className="linksWrapper">
                 {menuOptions.map(option => (
                     <NavLink

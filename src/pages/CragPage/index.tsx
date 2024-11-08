@@ -3,7 +3,8 @@ import "../../styles/CragPage.scss";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api/crag.ts";
-import { ISector, IRoute } from "../../interfaces";
+import { ISector } from "../../interfaces";
+import { isMobile } from "../../utils/brakePoints.ts";
 import { GradeScale } from "../../consts/index.ts";
 import SectorsSelector from "./components/SectorsSelector.tsx";
 import SectorsGallery from "./components/SectorsGallery.tsx";
@@ -22,8 +23,9 @@ const CragPage: React.FC = (): JSX.Element => {
     const sectorsData = useQuery('cragSectors', () => fetchCragSectors(cragId || ""));
     const routesData = useQuery('cragRoutes', () => fetchCragRoutes(cragId || ""));
     const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
-    const [scrollTop, setScrollTop] = useState<number>(0);
     const [selectedSector, setSelectedSector] = useState<ISector>();
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const imagesAmount = isMobile() ? 2 : 4;
 
     const mapBackground = "#F7770F";
     const mapBorders = "#263238";
@@ -63,7 +65,7 @@ const CragPage: React.FC = (): JSX.Element => {
 
 
                 <div className="gallery">
-                    {cragData.data.images.slice(0, 4).map(imageSrc => (
+                    {cragData.data.images.slice(0, imagesAmount).map(imageSrc => (
                         <img className="cragImage" src={imageSrc} alt="crag" key={imageSrc} />
                     ))}
                 </div>

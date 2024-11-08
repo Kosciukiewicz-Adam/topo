@@ -1,112 +1,144 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "../../../styles/List.scss";
 import { ICrag } from "../../../interfaces";
 import { useNavigate } from "react-router";
-import { getCountryFlag } from "../../../utils/countryFlag.tsx";
-import "../../../styles/List.scss";
+import { getCountryFlag } from "./CountryFlag.tsx";
+import { ListView } from "../../../consts/index.ts";
+import FilterButton from "../../../sharedComponents/FilterButton.tsx";
+import ListItem from "./ListItem.tsx";
 
 import detailedList from "../../../assets/icons/detailed_list.svg";
 import simpleList from "../../../assets/icons/simple_list.svg";
 import checkboxYes from "../../../assets/icons/checkbox_yes.svg";
 import checkboxNo from "../../../assets/icons/checkbox_no.svg";
+import number from "../../../assets/icons/number.svg";
+import abc from "../../../assets/icons/abc.svg";
 
 interface Props {
-    countriesList: string[];
-    filteredCrags: (countryName?: string) => ICrag[];
-    getCountryLabel: (countryName: string) => string;
+    crags: ICrag[];
+    searchQuery: string;
 }
 
-enum ListView {
-    SIMPLE = "simple",
-    DETAILED = "detailed",
+interface Country {
+    name: string;
+    routesAmount: number;
 }
 
-const List: React.FC<Props> = ({ countriesList, getCountryLabel, filteredCrags }): JSX.Element => {
+enum SortType {
+    ALPHABETICALLY = "alphabetically",
+    ROUTES_AMOUNT = "routesAmount",
+}
+
+const List: React.FC<Props> = ({ crags, searchQuery }): JSX.Element => {
+    const [sortType, setSortType] = useState<SortType>(SortType.ROUTES_AMOUNT);
     const [listView, setListView] = useState<ListView>(ListView.DETAILED);
-    const [sortByCountry, setSortByCountry] = useState<boolean>(true);
-    const navigate = useNavigate();
+    const [filterByCountry, setFilterByCountry] = useState<boolean>(true);
+    const [cragsToDisplay, setCragsToDisplay] = useState<ICrag[]>(crags);
+    const [countriesList, setCountriesList] = useState<Country[]>([]);
 
-    const getListElement = (crag: ICrag) => {
-        if (listView === ListView.SIMPLE) {
-            return (
-                <div className="cragLabel" id={crag.name}>
-                    <div className="navButton" onClick={() => navigate(`/crag/${crag._id}`)}>
-                        see crag
-                    </div>
-                    <div className="name">{crag.name}</div>
-                </div>
-            )
+    useEffect(() => {
+        if (!crags) {
+            return;
         }
 
-        let shortDescription = crag.description.split("").slice(0, 200).join("");
-        shortDescription += "[...]";
+        let listOfCountries: Country[] = [];
+        let initialCrags = structuredClone(crags);
 
-        return (
-            <div className="cragLabel" id={crag.name}>
-                <img src={crag.images[0]} alt="crag" className="image" />
-                <div className="wrapper">
-                    <div className="name">{crag.name}</div>
-                    <div className="routesAmount">{`${crag?.routesAmount} routes`}</div>
-                </div>
-                <div className="shortDescription">{shortDescription}</div>
-                <div className="navButton" onClick={() => navigate(`/crag/${crag._id}`)}>
-                    see crag
-                </div>
-            </div>
-        )
+        for (let i = 0; i < crags.length; i++) {
+            const countryInArray = listOfCountries.find(country => country.name === crags[i].country);
+
+            if (countryInArray) {
+                const indexOfCountryInArray = listOfCountries.indexOf(countryInArray);
+                listOfCountries[indexOfCountryInArray].routesAmount += crags[i].routesAmount;
+            } else {
+                listOfCountries.push({ name: crags[i].country, routesAmount: crags[i].routesAmount })
+            }
+        }
+
+        if (filterByCountry) {
+            switch (sortType) {
+                case SortType.ALPHABETICALLY:
+                    listOfCountries.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case SortType.ROUTES_AMOUNT:
+                    listOfCountries.sort((a, b) => b.routesAmount - a.routesAmount);
+                    break;
+            }
+        }
+
+        switch (sortType) {
+            case SortType.ALPHABETICALLY:
+                initialCrags.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case SortType.ROUTES_AMOUNT:
+                initialCrags.sort((a, b) => b.routesAmount - a.routesAmount);
+                break;
+        }
+
+        if (searchQuery) {
+            initialCrags.filter(crag => crag.name.includes(searchQuery))
+        }
+
+        setCountriesList(listOfCountries);
+        setCragsToDisplay(initialCrags);
+    }, [crags, filterByCountry, sortType, searchQuery]);
+
+
+    const changeSortType = () => {
+        setSortType(sortType === SortType.ALPHABETICALLY ? SortType.ROUTES_AMOUNT : SortType.ALPHABETICALLY)
     }
 
-    const getList = (): JSX.Element => {
-        if (!sortByCountry) {
-            return (
-                <div className="cragsWrapper">
-                    {filteredCrags().map(crag =>
-                        getListElement(crag)
-                    )}
-                </div>
-            )
-        }
-
-        return (
-            <>
-                {
-                    countriesList.map((country) => (filteredCrags(country).length ?
-                        (<div className="countryTab" key={country}>
-                            <h2 className="countryName">
-                                {listView === ListView.DETAILED &&
-                                    getCountryFlag(country)
-                                }
-                                {getCountryLabel(country)}
-                            </h2>
-                            <div className="cragsWrapper">
-                                {filteredCrags(country).map(crag =>
-                                    getListElement(crag)
-                                )}
-                            </div>
-                        </div>)
-                        : <></>))
-                }
-            </>
-        )
+    const getCountryLabel = ({ routesAmount, name }: Country): string => {
+        return `${name} | ${routesAmount} routes`
     }
 
     return (
         <div className={`List ${listView}`}>
             <div className="listViewControll">
-                List view:
-                <div className={`button${listView === ListView.SIMPLE ? " active" : ""}`} onClick={() => setListView(ListView.SIMPLE)}>
-                    <img src={simpleList} alt="icon" />
-                    <div className="label">Simple</div>
-                </div>
-                <div className={`button${listView === ListView.DETAILED ? " active" : ""}`} onClick={() => setListView(ListView.DETAILED)}>
-                    <img src={detailedList} alt="icon" />
-                    <div className="label">Detailed</div>
-                </div>
-                <div className={`button${sortByCountry ? " active" : ""} sortByCountry`} onClick={() => setSortByCountry(prev => !prev)}>
-                    {sortByCountry ? <img src={checkboxYes} alt="icon" /> : <img src={checkboxNo} alt="icon" />}
-                    <div className="label">Sort by country</div>
-                </div>
+                <FilterButton
+                    buttonLabels={["Simple list", "Detailed list"]}
+                    iconsSrc={[simpleList, detailedList]}
+                    width={120}
+                    changeButtonState={() => {
+                        setListView(prev => prev === ListView.SIMPLE ? ListView.DETAILED : ListView.SIMPLE)
+                    }}
+                />
+
+                <FilterButton
+                    buttonLabels={["Filtering country", "Not filtering"]}
+                    iconsSrc={[checkboxYes, checkboxNo]}
+                    width={180}
+                    changeButtonState={() => setFilterByCountry(prev => !prev)}
+                />
+
+                <FilterButton
+                    buttonLabels={["Sorting by routes amount", "Sorting alphabetically"]}
+                    changeButtonState={changeSortType}
+                    iconsSrc={[abc, number]}
+                    width={200}
+                />
             </div>
-            {getList()}
+            {filterByCountry ? (
+                countriesList.map((country) => (<>
+                    <h2 className="countryName" key={country.name}>
+                        {listView === ListView.DETAILED &&
+                            getCountryFlag(country.name)
+                        }
+                        {getCountryLabel(country)}
+                    </h2>
+                    <div className="cragsWrapper">
+                        {cragsToDisplay.filter(crag => crag.country === country.name).map((crag, index) =>
+                            <ListItem crag={crag} index={index} listView={listView} />
+                        )}
+                    </div>
+                </>))
+            ) : (
+                <div className="cragsWrapper">
+                    {cragsToDisplay.map((crag, index) =>
+                        <ListItem crag={crag} index={index} listView={listView} />
+                    )}
+                </div>
+            )}
         </div >
     )
 }

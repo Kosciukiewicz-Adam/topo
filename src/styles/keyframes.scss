@@ -18,26 +18,6 @@ $top: 60px;
     transform: rotate(-15deg);
 }
 
-@keyframes reveal_1 {
-    0% {
-        @include firstLeftOnStack($cardWidthSmall);
-    }
-
-    100% {
-        @include firstLeftUnfolded($cardWidthSmall);
-    }
-}
-
-@keyframes reveal_1_lg {
-    0% {
-        @include firstLeftOnStack($cardWidth);
-    }
-
-    100% {
-        @include firstLeftUnfolded($cardWidth);
-    }
-}
-
 ///////////////////////////////////// left 2
 
 @mixin secondLeftOnStack($cardSize) {
@@ -48,26 +28,6 @@ $top: 60px;
 @mixin secondLeftUnfolded($cardSize) {
     left: calc(50% - ($cardSize * 1) - ($gap * 0.5));
     transform: rotate(-5deg);
-}
-
-@keyframes reveal_2 {
-    0% {
-        @include secondLeftOnStack($cardWidthSmall);
-    }
-
-    100% {
-        @include secondLeftUnfolded($cardWidthSmall);
-    }
-}
-
-@keyframes reveal_2_lg {
-    0% {
-        @include secondLeftOnStack($cardWidth);
-    }
-
-    100% {
-        @include secondLeftUnfolded($cardWidth);
-    }
 }
 
 ///////////////////////////////////// right 1
@@ -82,27 +42,6 @@ $top: 60px;
     transform: rotate(5deg);
 }
 
-
-@keyframes reveal_3 {
-    0% {
-        @include firstRightOnStack($cardWidthSmall);
-    }
-
-    100% {
-        @include firstRightUnfolded($cardWidthSmall);
-    }
-}
-
-@keyframes reveal_3_lg {
-    0% {
-        @include firstRightOnStack($cardWidth);
-    }
-
-    100% {
-        @include firstRightUnfolded($cardWidth);
-    }
-}
-
 ///////////////////////////////////// right 2
 
 @mixin secondRightOnStack($cardSize) {
@@ -115,25 +54,4 @@ $top: 60px;
     right: calc(50% - ($cardSize * 2) - ($gap * 1.5));
     transform: rotate(15deg);
     top: $top;
-}
-
-
-@keyframes reveal_4 {
-    0% {
-        @include secondRightOnStack($cardWidthSmall);
-    }
-
-    100% {
-        @include secondRightUnfolded($cardWidthSmall);
-    }
-}
-
-@keyframes reveal_4_lg {
-    0% {
-        @include secondRightOnStack($cardWidth);
-    }
-
-    100% {
-        @include secondRightUnfolded($cardWidth);
-    }
 }

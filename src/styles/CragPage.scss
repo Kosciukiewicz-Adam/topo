@@ -85,7 +85,7 @@
     }
 
     .cragImage {
-        width: calc(50% - 5px);
+        width: calc(40%);
         aspect-ratio: 1/1;
         object-fit: cover;
         border-radius: 10px;
@@ -97,7 +97,7 @@
         transition: 0.5s;
 
         @include mobile-md {
-            width: 20%;
+            width: calc(25% - 15px);
 
             &:hover~.cragImage {
                 transform: rotateY(-25deg);

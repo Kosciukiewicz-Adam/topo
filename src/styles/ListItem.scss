@@ -1,0 +1,93 @@
+@import "./settings.scss";
+
+.ListItem {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: white;
+    align-items: center;
+    border-radius: 10px;
+
+    &.simple {
+        width: 20%;
+        min-width: 250px;
+        justify-content: space-evenly;
+        border-radius: 10px;
+    }
+
+    &.detailed {
+        width: calc(100% - 20px);
+        justify-content: space-between;
+        scale: 0.7;
+        opacity: 0;
+        animation: revealCrag 1s forwards;
+        gap: 10px;
+    }
+
+    .wrapper {
+        text-align: center;
+        padding: 0 5px;
+    }
+
+    .name {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .routesAmount {
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    .image {
+        height: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+
+    .shortDescription {
+        width: 60%;
+        font-size: 10px;
+        display: none;
+
+        @include mobile-md {
+            display: block;
+        }
+
+        @include desktop-m {
+            font-size: 14px;
+        }
+    }
+
+    .navButton {
+        width: 25px;
+        height: 25px;
+        padding: 5px;
+        border-radius: 100vmax;
+        background: $orange;
+        color: black;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+@keyframes revealCrag {
+    0% {
+        scale: 0.7;
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
+}
