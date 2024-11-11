@@ -52,6 +52,7 @@
             width: 80%;
             font-size: 35px;
             flex-direction: row;
+            height: unset;
         }
 
         @include desktop-lg {
