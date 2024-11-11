@@ -1,10 +1,9 @@
 import React from "react";
 import "../../../styles/SectorsGallery.scss";
-import { IRoute, ISector } from "../../../interfaces";
+import { ISector } from "../../../interfaces";
 
 interface Props {
     setSelectedSector: (sector: ISector) => void;
-    getSectorRoutes: (id: string) => IRoute[];
     sectors: ISector[];
 }
 
@@ -14,7 +13,7 @@ const SectorsGallery: React.FC<Props> = ({
 }): JSX.Element => {
     return (
         <div className="SectorsGallery">
-            <h2 className="sectionHeading">Sectors</h2>
+            <h2 className="sectionHeader">Sectors</h2>
             <div className="labelsWrapper">
                 {sectors.map((sector) => (
                     <div

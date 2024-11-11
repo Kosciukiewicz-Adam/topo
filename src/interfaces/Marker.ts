@@ -1,6 +1,7 @@
+import { type LatLngExpression } from 'leaflet';
+
 export interface IMarker {
-    markerOffset: number;
     name: string;
-    coordinates: Array<number>;
+    coordinates: LatLngExpression;
     _id: string;
 };

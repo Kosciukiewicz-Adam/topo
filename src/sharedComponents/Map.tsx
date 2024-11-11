@@ -1,13 +1,19 @@
 import React from "react";
-import {
-    ComposableMap,
-    ZoomableGroup,
-    Geographies,
-    Geography,
-    Marker,
-} from "react-simple-maps";
+// import {
+//     ComposableMap,
+//     ZoomableGroup,
+//     Geographies,
+//     Geography,
+//     Marker,
+// } from "react-simple-maps";
 import { IMarker } from "../interfaces/Marker";
-import geoJSON from "../assets/usa.json";
+import "../styles/Map.scss";
+// import geoJSON from "../assets/usa.json";
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
+import L from 'leaflet';
+
+import climbing from "../assets/icons/climbing.svg";
 
 interface Props {
     handleClick?: (value: string) => void;
@@ -23,71 +29,37 @@ interface Props {
 
 
 const Map: React.FC<Props> = ({
-    forcedCenter,
     handleClick,
-    background,
-    toutchable,
     markers,
-    borders,
-    scale,
 }): JSX.Element => {
-    const defaultBorder = "white";
-    const defaultBackground = "grey";
 
-    const mapFill = background || defaultBackground;
-    const mapStroke = borders || defaultBorder;
-
-    const center = markers && markers.length < 2 ? markers[0].coordinates : [0, 0];
-    const scaledFontSize = scale < 300 ? "15px" : "30px";
+    const icon = new L.Icon({
+        iconUrl: climbing,
+        iconRetinaUrl: climbing,
+        iconSize: new L.Point(20, 20),
+        className: 'leaflet-div-icon'
+    });
 
     return (
-        <ComposableMap
-            projection="geoMercator"
-            className="Map"
-            projectionConfig={{
-                scale: scale,
-            }}
-            style={toutchable ? {} : { pointerEvents: "none" }}
-        >
-            <ZoomableGroup center={forcedCenter || center} zoom={0.65}>
-                <Geographies geography={geoJSON}>
-                    {({ geographies }) =>
-                        geographies.map((geo) => (
-                            <Geography
-                                stroke={mapStroke}
-                                key={geo.rsmKey}
-                                geography={geo}
-                                fill={mapFill}
-                                style={{
-                                    default: {
-                                        outline: "none"
-                                    },
-                                    pressed: {
-                                        outline: "none"
-                                    },
-                                    hover: {
-                                        outline: "none"
-                                    }
-                                }}
-                            />
-                        ))
-                    }
-                </Geographies>
-                {markers?.map(({ name, coordinates, markerOffset, _id }) => (
-                    <Marker key={name} coordinates={coordinates} onClick={() => handleClick?.(_id)} className="marker">
-                        <circle r={5} fill="#000" />
-                        <text
-                            style={{ fontFamily: "system-ui", fill: "#000", fontSize: scaledFontSize }}
-                            textAnchor="middle"
-                            y={markerOffset}
-                        >
-                            {name}
-                        </text>
+        <div className="Map">
+            <MapContainer center={[51.505, -0.09]} zoom={3} scrollWheelZoom={true} style={{ width: "100%", height: "100%" }} >
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {markers?.map(marker => (
+                    <Marker position={marker.coordinates} icon={icon} title={marker.name}
+                        eventHandlers={{
+                            click: (e) => {
+                                handleClick?.(marker._id)
+                            },
+                        }}>
+                        <Tooltip direction="top" offset={[0, -10]} opacity={1} permanent>{marker.name}</Tooltip>
                     </Marker>
                 ))}
-            </ZoomableGroup>getMapContent()
-        </ComposableMap>
-    );
+            </MapContainer>
+        </div >
+    )
 };
 
 export default Map;

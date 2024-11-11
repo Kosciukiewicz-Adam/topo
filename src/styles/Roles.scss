@@ -2,22 +2,22 @@
 
 .Roles {
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 10;
-    background: rgba(0, 0, 0, .5);
     align-items: center;
-    font-family: "Caveat";
+
 
     .title {
-        font-size: 30px;
+        font-size: $headerFontSizeMobile;
         color: white;
         text-align: center;
+        margin: 0;
 
         @include mobile-md {
-            font-size: 40px;
+            font-size: $headerFontSize;
         }
     }
 
@@ -35,12 +35,13 @@
         width: calc(100% - 40px);
         height: 100%;
         padding: 0 20px;
-        background: rgba(0, 0, 0, 0.6);
+        background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .3));
         z-index: 10;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 20px;
 
         @include mobile-md {
             height: calc(100% - 5vh);

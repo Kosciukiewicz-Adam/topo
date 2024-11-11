@@ -1,0 +1,155 @@
+@import "./settings.scss";
+
+$boxShadown: rgb(255 255 255 / 30%) 0px 19px 38px, rgb(255 255 255 / 22%) 0px 15px 12px;
+
+.Festivals {
+    height: calc(100vh - $footerHeightMobile);
+    width: 100%;
+    background: black;
+    background-image: url(https://vasenev.com/wp-content/uploads/2017/06/EV5D8781.jpg);
+    background-size: cover;
+
+    @include mobile-md {
+        height: calc(100vh - $footerHeight - 100px);
+        padding: 100px 10% 0 10%;
+        width: 80%;
+    }
+
+    @include desktop-lg {
+        padding: 100px 15% 0 15%;
+        width: 70%;
+    }
+
+    .sectionHeader {
+        color: white;
+        text-align: center;
+
+        @include mobile-md {
+            text-align: left;
+        }
+    }
+
+    .contentWrapper {
+        width: 100%;
+        height: calc(100% - 50px);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .festivalCard {
+        width: 100%;
+        height: 85%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 300px;
+        transform: rotate(0deg);
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        @include mobile-md {
+            width: 30%;
+        }
+
+        &:hover {
+            transform: rotate(2deg);
+
+            .tearoff {
+                transform: rotate(-10deg);
+                top: 26px;
+                right: -10px;
+            }
+        }
+
+        &:nth-child(2) {
+            .baner {
+                background: rgb(249 195 28);
+            }
+        }
+    }
+
+    .baner {
+        width: 100%;
+        height: 40%;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        border: 5px solid white;
+        box-sizing: border-box;
+    }
+
+    .content {
+        width: calc(100% - 40px);
+        padding: 20px;
+        height: 35%;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .tearoff {
+        width: 100%;
+        border-top: 4px dashed $orange;
+        box-sizing: border-box;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 15%;
+        background: white;
+        transform: rotate(0deg);
+        top: 0;
+        right: 0;
+        transition: 0.3s ease-in-out;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .festivalName {
+        font-size: 18px;
+        text-align: center;
+        padding: 6px;
+        background: $orange;
+        color: black;
+        border-radius: 18px;
+    }
+
+    .description {
+        text-align: justify;
+        font-size: 12px;
+        height: 55%;
+        background: white;
+    }
+
+    .website {
+        color: blue;
+        cursor: pointer;
+        width: 90%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .location {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            background: $orange;
+            border-radius: 100vmax;
+            cursor: pointer;
+        }
+    }
+}

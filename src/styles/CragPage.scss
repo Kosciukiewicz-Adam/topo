@@ -174,16 +174,6 @@
         }
     }
 
-    .sectionHeading {
-        font-size: 24px;
-        margin: 0;
-        width: 100%;
-
-        @include mobile-md {
-            font-size: 30px;
-        }
-    }
-
     .Chart {
         justify-content: center;
 

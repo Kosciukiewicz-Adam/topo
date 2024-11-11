@@ -58,11 +58,11 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
         <DataComponentWrapper
             queryStatus={status as QueryStatus}
             customLoader={
-                <div className="CragPeview"></div>
+                <div className="CragPreview"></div>
             }
         >
             <div className="CragPreview">
-                <h2 className="sectionHeading">Discover climbing everywhere around the world</h2>
+                <h2 className="sectionHeader">Discover climbing everywhere around the world</h2>
                 <div className="sectionContent">
 
                     <div

@@ -4,7 +4,8 @@ const countryCodes = {
     "bosnia and herzegovina": "BA",
     "spain": "ES",
     "poland": "PL",
-    "norway": "NO"
+    "norway": "NO",
+    "usa": "US"
 }
 
 export const getCountryFlag = (countryName: string): JSX.Element => {

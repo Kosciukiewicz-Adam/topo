@@ -7,12 +7,13 @@ import ParallaxDivider from "../../sharedComponents/ParalaxDivider.tsx";
 import ServiceStats from "./components/ServiceStats.tsx";
 import Footer from "../../sharedComponents/Footer.tsx";
 import Menu from "../../sharedComponents/Menu.tsx";
+import Festivals from "./components/Festivals.tsx";
 import Roles from "./components/Roles.tsx";
 
 import mainBackgroundDesktop from "../../assets/bg5.jpg";
 import mainBackgroundMobile from "../../assets/bg.avif";
-import imgSrc from "../../assets/tommy_caldwell.avif";
-import imgSrcMobile from "../../assets/tommy.avif";
+// import imgSrc from "../../assets/tommy_caldwell.avif";
+// import imgSrcMobile from "../../assets/tommy.avif";
 import logo from "../../assets/logo.png";
 
 const Homepage: React.FC = (): JSX.Element => {
@@ -32,24 +33,25 @@ const Homepage: React.FC = (): JSX.Element => {
     return (
         <div className="Homepage">
             <Menu scrollTop={scrollTop} homepage={true} />
-            <Parallax pages={3} ref={parallaxRef}>
+            <Parallax pages={3.2} ref={parallaxRef}>
                 <ParallaxLayer speed={0}>
                     <img src={mainBackgorund} alt='main background' className="mainBackgorund" />
                     <Roles scrollTop={scrollTop} />
-                    <div className="placeholder">
+                    {/* <div className="placeholder">
                         <img src={isMobile() ? imgSrcMobile : imgSrc} alt="" />
-                    </div>
+                    </div> */}
+                    <Festivals />
                     <Footer />
                 </ParallaxLayer>
                 <ParallaxLayer speed={0.9}>
                     <div className="header">
                         <div className="headerText">
                             <img src={logo} alt='logo' className="logo" />
-                            <h2>Biggest free rock climbing guidebook</h2>
+                            <h2 className="titleText">Biggest free rock climbing guidebook</h2>
                         </div>
                     </div>
                     {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview scrollTop={scrollTop} />}
-                    <ParallaxDivider height="105vh" mobileHeight="100vh" />
+                    <ParallaxDivider height="115vh" mobileHeight="100vh" />
                     {isMobile() ? <CragPreview scrollTop={scrollTop} /> : <ServiceStats scrollTop={scrollTop} />}
                 </ParallaxLayer>
             </Parallax>

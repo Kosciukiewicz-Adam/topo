@@ -7,26 +7,32 @@
     height: 100vh;
     position: relative;
 
-    .placeholder {
-        height: calc(100vh - $footerHeightMobile);
-        width: 100%;
-
-        @include mobile-md {
-            height: calc(100vh - $footerHeight);
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
     .header {
         width: 100%;
         height: 100vh;
         color: white;
         font-family: "Afacad Flux";
+    }
+
+    .sectionHeader {
+        font-size: $headerFontSizeMobile;
+        margin: 0;
+
+        @include mobile-md {
+            font-size: $headerFontSize;
+        }
+    }
+
+    .titleText {
+        text-transform: uppercase;
+        margin: 0;
+        font-size: 30px;
+        text-align: center;
+
+        @include mobile-md {
+            font-size: 45px;
+            text-align: left;
+        }
     }
 
     .headerText {
@@ -37,8 +43,6 @@
         height: 100%;
         justify-content: center;
         align-items: center;
-
-
 
         @include mobile-md {
             height: unset;

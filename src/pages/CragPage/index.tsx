@@ -15,7 +15,6 @@ import Map from "../../sharedComponents/Map.tsx";
 import Sector from "./components/Sector.tsx";
 
 import backgroundSrc from "../../assets/background.svg";
-import wave from "../../assets/wave.svg";
 import test from "../../assets/test2.jpg";
 
 const CragPage: React.FC = (): JSX.Element => {
@@ -42,15 +41,9 @@ const CragPage: React.FC = (): JSX.Element => {
         };
     }, [])
 
-    if (!routesData.data || !cragData.data || !sectorsData.data) {
-        return <></>;
-    }
-
-    if (!selectedSector && sectorsData.data.length) {
+    if (!selectedSector && sectorsData?.data?.length) {
         setSelectedSector(sectorsData.data[0])
     }
-
-    const { name, coordinates, _id, description, country } = cragData.data;
 
     return (
         <div className="CragPage">
@@ -59,34 +52,36 @@ const CragPage: React.FC = (): JSX.Element => {
                 <img src={test} className="wave" />
 
                 <div className="header">
-                    <h1 className="cargName">{name.toUpperCase()}</h1>
-                    <div className="stats">{`${country} | ${cragData.data?.routesAmount} routes`}</div>
+                    <h1 className="cargName">{cragData?.data?.name.toUpperCase()}</h1>
+                    <div className="stats">{`${cragData?.data?.country} | ${cragData.data?.routesAmount} routes`}</div>
                 </div>
 
 
                 <div className="gallery">
-                    {cragData.data.images.slice(0, imagesAmount).map(imageSrc => (
+                    {cragData?.data?.images.slice(0, imagesAmount).map(imageSrc => (
                         <img className="cragImage" src={imageSrc} alt="crag" key={imageSrc} />
                     ))}
                 </div>
             </div>
 
-            <div className="mapAndDescription">
-                <div className="description">{description}</div>
-                <Map
-                    markers={[{ markerOffset: 0, name, coordinates, _id }]}
-                    background={mapBackground}
-                    borders={mapBorders}
-                    scale={1200}
-                />
-            </div>
+            {cragData?.data && (
+                <div className="mapAndDescription">
+                    <div className="description">{cragData.data.description}</div>
+                    <Map
+                        markers={[{ name: selectedSector?.name || "", coordinates: cragData.data.coordinates, _id: cragData.data._id }]}
+                        background={mapBackground}
+                        borders={mapBorders}
+                        scale={1200}
+                    />
+                </div>
+            )}
 
             <div className="cragGrades">
-                <div className="sectionHeading">Distribution of grades in crag</div>
+                <div className="sectionHeader">Distribution of grades in crag</div>
                 <Chart
                     startAnimation={scrollTop > 600}
                     gradeScale={GradeScale.FRENCH}
-                    allRoutes={routesData.data}
+                    allRoutes={routesData?.data || []}
                 />
             </div>
 
@@ -94,8 +89,7 @@ const CragPage: React.FC = (): JSX.Element => {
 
             <SectorsGallery
                 setSelectedSector={setSelectedSector}
-                getSectorRoutes={() => []}
-                sectors={sectorsData.data}
+                sectors={sectorsData?.data || []}
             />
 
             <img src={backgroundSrc} alt="background" className="waveImage" />
@@ -106,7 +100,7 @@ const CragPage: React.FC = (): JSX.Element => {
                         <SectorsSelector
                             selectedSectorId={selectedSector._id}
                             setSelectedSector={setSelectedSector}
-                            sectors={sectorsData.data}
+                            sectors={sectorsData?.data || []}
                         />
                     }
                     scrollTop={scrollTop}

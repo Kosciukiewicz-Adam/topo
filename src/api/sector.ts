@@ -1,8 +1,8 @@
 import { IRoute } from "../interfaces";
 
-const url = "http://localhost:4000" //"https://topo-server.onrender.com"
+const API_URL = "https://topo-server.onrender.com";
 
 export const fetchSectorRoutes = async (sectorId: string): Promise<IRoute[]> => {
-    const res = await fetch(`${url}/sectors/${sectorId}/routes`);
+    const res = await fetch(`${API_URL}/sectors/${sectorId}/routes`);
     return res.json();
 }

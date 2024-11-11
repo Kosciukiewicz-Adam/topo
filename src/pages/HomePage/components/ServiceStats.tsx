@@ -77,7 +77,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
 
     return (
         <div className="ServiceStats">
-            <h2 className="sectionHeading">Look at our stats</h2>
+            <h2 className="sectionHeader">Look at our stats</h2>
             <div className="contentwrapper">
 
                 {isMobile() ? (

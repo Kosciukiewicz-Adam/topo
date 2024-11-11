@@ -41,7 +41,7 @@ const Sector: React.FC<Props> = ({
                     {sectorsSelector}
                 </div>
                 <div className="main">
-                    <h2 className="sectionHeading">{name}</h2>
+                    <h2 className="sectionHeader">{name}</h2>
                     <img className="sectorImage" src={imageWithRoutes} alt="sector routes" />
 
                     <div className="information">

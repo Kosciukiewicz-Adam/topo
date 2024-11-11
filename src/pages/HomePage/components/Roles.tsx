@@ -29,10 +29,26 @@ const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
     const mockDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 
     const roles: Role[] = [
-        { name: "Find climbing partners", description: mockDescription, imgSrc: img1 },
-        { name: "Check topo", description: mockDescription, imgSrc: img2 },
-        { name: "Log ascends", description: mockDescription, imgSrc: img3 },
-        { name: "Add routes to topo", description: mockDescription, imgSrc: img4 },
+        {
+            name: "Find climbing partners",
+            description: "Find people to climb with anywhere around the wourld using our social media features",
+            imgSrc: img1
+        },
+        {
+            name: "Check topo",
+            description: "Get access to thousends of routes, sectors and crags. You can also get many insidefull information about your projects, learn route hostory or learn new beta",
+            imgSrc: img2
+        },
+        {
+            name: "Log ascends",
+            description: "Log ascends of each route you were able to send, check ascends of other climbers.",
+            imgSrc: img3
+        },
+        {
+            name: "Build our community",
+            description: "Add routes bolted or discovered by you and share them with the rest of the climbing wourld",
+            imgSrc: img4
+        },
     ];
 
     const changeSlide = (dir: SlideChangeDir) => {
@@ -81,7 +97,7 @@ const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
         <div className="Roles">
             <img src={backgroundImage} alt="" className="bgImage" />
             <div className="contentWrapper">
-                <h2 className="title">Get to know all the possibilities of our service</h2>
+                <h2 className="title">More than just a topo service</h2>
                 {isMobile() ? getMobileContent() : getDesktopContent()}
             </div>
         </div>
