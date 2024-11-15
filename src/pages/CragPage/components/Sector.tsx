@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "../../../styles/Sector.scss";
-import { ISector } from "../../../interfaces";
-import { GradeScale, QueryStatus } from "../../../consts/index.ts";
-import Chart from "../../../sharedComponents/Chart.tsx";
-import { getGradeDifficulty, getSectorDifficultyLevel } from "../../../utils/gradeDifficulty.ts";
 import { useQuery } from "react-query";
-import { fetchSectorRoutes } from "../../../api/sector.ts";
-import DataComponentWrapper from "../../../sharedComponents/DataComponentWrapper.tsx"
+import { getGradeDifficulty, getSectorDifficultyLevel } from "../../../utils";
+import { GradeScale, QueryStatus, gradeRanges } from "../../../consts";
+import { fetchSectorRoutes } from "../../../api";
+import { ISector } from "../../../interfaces";
+import { DataComponentWrapper, Chart } from "../../../sharedComponents"
+import "../../../styles/Sector.scss";
 
 type Props = {
     sectorsSelector: JSX.Element;
@@ -22,16 +21,6 @@ const Sector: React.FC<Props> = ({
 }): JSX.Element => {
     const [showLegend, setShowLegend] = useState<boolean>(true);
     const { data, status } = useQuery(['sectorRoutes', _id], () => fetchSectorRoutes(_id));
-
-    const gradeRanges: { grades: string, level: string }[] = [
-        { grades: "3 / 5c+", level: "Beginner" },
-        { grades: "6a / 7a", level: "Intermediate" },
-        { grades: "7a+ / 7c", level: "Advanced" },
-        { grades: "7c+ / 8b", level: "Master" },
-        { grades: "8b+ / 9a", level: "Pro" },
-        { grades: "9a / 9c", level: "Elite" },
-    ];
-
     const sectorDifficultyLevel = getSectorDifficultyLevel(data || []);
 
     return (

@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { isMobile } from "../../../utils"
 import "../../../styles/ServiceStats.scss";
-import { isMobile } from "../../../utils/brakePoints.ts"
-
-import sector from "../../../assets/icons/sector.svg";
-import traverse from "../../../assets/traverse.jfif";
-import route from "../../../assets/icons/route.svg";
-import years from "../../../assets/icons/years.svg";
-import users from "../../../assets/icons/users.svg";
-import crag from "../../../assets/icons/crag.svg";
+import { serviceStatsBg, route, years, users, crag, sector } from "../../../assets";
 
 interface Props {
     scrollTop: number;
 }
 
 interface Stat {
-    icon: string;
     number: number;
     label: string;
+    icon: string;
 }
 
 const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
@@ -32,10 +26,10 @@ const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
 const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const [counter, setCounter] = useState<number>(0);
     const startScrollHeight = isMobile() ? 100 : 1200
-    const routesAmount = 851;
     const sectorsAmount = 102;
-    const cragsAmount = 46;
+    const routesAmount = 851;
     const usersAmount = 5000;
+    const cragsAmount = 46;
     const yearsAmount = 5;
 
     const getBgImageScale = (): number => {
@@ -43,7 +37,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     }
 
     useEffect(() => {
-        let interval;
+        let interval: number = 0;
 
         if (scrollTop > startScrollHeight) {
             interval = window.setInterval(() => setCounter(prev => (prev + 1)), 50);
@@ -56,7 +50,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
         return () => {
             window.clearInterval(interval)
         };
-    }, [scrollTop, counter]);
+    }, [scrollTop, counter, startScrollHeight]);
 
     const getIncrementedNumber = (number: number, speedMultiply?: number) => {
         if (speedMultiply) {
@@ -90,7 +84,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
                             {stats.slice(0, 3).map(stat => getStat(stat))}
                         </div>
                         <div className="bgImageWrapper">
-                            <img src={traverse} alt='' className="bgImage" style={{ transform: `scale(${getBgImageScale()})` }} />
+                            <img src={serviceStatsBg} alt='' className="bgImage" style={{ transform: `scale(${getBgImageScale()})` }} />
                         </div>
                         <div className="statsWrapper">
                             {stats.slice(3, 5).map(stat => getStat(stat))}

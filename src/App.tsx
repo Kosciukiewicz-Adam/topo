@@ -1,16 +1,14 @@
 import React from "react";
 import "./styles/App.scss"
-import { ParallaxProvider } from 'react-scroll-parallax';
 import { HashRouter, Routes, Route } from "react-router-dom";
-import CragsList from "./pages/CragsList/index.tsx";
-import CragPage from "./pages/CragPage/index.tsx";
-import Homepage from "./pages/HomePage/index.tsx";
+import CragsList from "./pages/CragsList";
+import CragPage from "./pages/CragPage";
+import Homepage from "./pages/HomePage";
 
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <ParallaxProvider>
-      <HashRouter>
+    <HashRouter>
         <Routes>
           <Route path="/" Component={Homepage} />
           <Route path="/crag/:cragId" Component={CragPage} />
@@ -18,7 +16,6 @@ const App: React.FC = (): JSX.Element => {
           <Route path="/about" Component={() => <>ABOUT</>} />
         </Routes>
       </HashRouter>
-    </ParallaxProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
+import { isMobile } from "../utils"
 import "../styles/ParallaxDivider.scss";
-import { isMobile } from "../utils/brakePoints.ts"
 
 interface Props {
     height: string;

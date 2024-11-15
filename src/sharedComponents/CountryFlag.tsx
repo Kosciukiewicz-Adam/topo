@@ -1,15 +1,13 @@
 import React from "react"
+import { countryCodes } from "../consts";
 
-const countryCodes = {
-    "bosnia and herzegovina": "BA",
-    "spain": "ES",
-    "poland": "PL",
-    "norway": "NO",
-    "usa": "US"
+interface Props {
+    countryName: string
 }
 
-export const getCountryFlag = (countryName: string): JSX.Element => {
+const CountryFlag: React.FC<Props> = ({ countryName }): JSX.Element => {
     const countryCode = countryCodes[countryName.trim().toLocaleLowerCase()];
+
     return (
         <img
             src={`https://flagsapi.com/${countryCode}/flat/64.png`}
@@ -18,3 +16,5 @@ export const getCountryFlag = (countryName: string): JSX.Element => {
         />
     );
 };
+
+export default CountryFlag;

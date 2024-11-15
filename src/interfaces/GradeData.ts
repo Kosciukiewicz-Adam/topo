@@ -1,4 +1,4 @@
 export interface IGradeData {
-    grade: string;
     amount: number;
+    grade: string;
 };

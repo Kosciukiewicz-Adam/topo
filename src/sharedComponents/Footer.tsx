@@ -1,10 +1,6 @@
 import React from "react";
 import "../styles/Footer.scss";
-
-import instagram from "../assets/icons/instagram.svg";
-import youtube from "../assets/icons/youtube.svg";
-import facebook from "../assets/icons/facebook.svg";
-import github from "../assets/icons/github.svg";
+import {instagram, facebook, youtube, github} from "../assets"
 
 const Footer: React.FC = (): JSX.Element => {
     return (

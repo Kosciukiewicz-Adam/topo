@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "../../../styles/CragPreview.scss";
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
-import { QueryStatus } from "../../../consts/index.ts";
-import { isMobile } from "../../../utils/brakePoints.ts"
-import { ICrag } from "../../../interfaces/index.ts";
-import { fetchCrags } from "../../../api/crag.ts";
-import DataComponentWrapper from "../../../sharedComponents/DataComponentWrapper.tsx";
-import Map from "../../../sharedComponents/Map.tsx";
-
-import mouse from "../../../assets/icons/mouse.svg";
-import drag from "../../../assets/icons/drag.svg";
+import { QueryStatus } from "../../../consts";
+import { isMobile } from "../../../utils"
+import { ICrag } from "../../../interfaces";
+import { fetchCrags } from "../../../api";
+import { Map, DataComponentWrapper } from "../../../sharedComponents";
+import "../../../styles/CragPreview.scss";
+import { mouse, drag } from "../../../assets";
 
 interface Props {
     scrollTop: number;
@@ -32,7 +29,7 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
         setSelectedCrag(data[0])
     }
 
-    const selectedCragById = (cragId) => {
+    const selectedCragById = (cragId: string) => {
         const cragToSelect = data?.find(crag => crag._id === cragId);
 
         if (cragToSelect) {
@@ -64,7 +61,6 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
             <div className="CragPreview">
                 <h2 className="sectionHeader">Discover climbing everywhere around the world</h2>
                 <div className="sectionContent">
-
                     <div
                         style={showAnimation ? { animation: "slideUp forwards 0.7s" } : {}}
                         onClick={() => setShowAnimation(prev => (!prev))}
@@ -93,11 +89,9 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
                     </div>
                     <div className="cragMapWrapper">
                         <Map
-                            markers={data?.map(({ name, coordinates, _id }) => ({ markerOffset: -20, name, coordinates, _id }))}
+                            markers={data?.map(({ name, coordinates, _id }) => ({ markerOffset: -20, name, coordinates, _id })) || []}
                             handleClick={(value) => selectedCragById(value)}
                             forcedCenter={[10, 40]}
-                            background="#F7770F"
-                            toutchable={true}
                             scale={800}
                         />
 

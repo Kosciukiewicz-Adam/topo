@@ -1,17 +1,12 @@
 import React from "react";
-import "../../../styles/Festivals.scss";
 import { useQuery } from "react-query";
-import { fetchFestivals } from "../../../api/festivals.ts"
 import { useNavigate } from "react-router"
+import { fetchFestivals } from "../../../api"
 import arrowRight from "../.././../assets/icons/arrow_right.svg";
-import { isMobile } from "../../../utils/brakePoints.ts"
+import { isMobile } from "../../../utils"
+import "../../../styles/Festivals.scss";
 
-interface Props {
-
-}
-
-
-const Festivals: React.FC<Props> = (): JSX.Element => {
+const Festivals: React.FC = (): JSX.Element => {
     const { status, data } = useQuery('festivals', fetchFestivals);
     const navigate = useNavigate();
 

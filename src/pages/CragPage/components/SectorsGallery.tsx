@@ -1,6 +1,6 @@
 import React from "react";
-import "../../../styles/SectorsGallery.scss";
 import { ISector } from "../../../interfaces";
+import "../../../styles/SectorsGallery.scss";
 
 interface Props {
     setSelectedSector: (sector: ISector) => void;

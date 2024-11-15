@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/CragPage.scss";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
-import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api/crag.ts";
+import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api";
 import { ISector } from "../../interfaces";
-import { isMobile } from "../../utils/brakePoints.ts";
-import { GradeScale } from "../../consts/index.ts";
-import SectorsSelector from "./components/SectorsSelector.tsx";
-import SectorsGallery from "./components/SectorsGallery.tsx";
-import Footer from "../../sharedComponents/Footer.tsx";
-import Chart from "../../sharedComponents/Chart.tsx";
-import Menu from "../../sharedComponents/Menu.tsx";
-import Map from "../../sharedComponents/Map.tsx";
-import Sector from "./components/Sector.tsx";
-
-import backgroundSrc from "../../assets/background.svg";
-import test from "../../assets/test2.jpg";
+import { GradeScale } from "../../consts";
+import { isMobile } from "../../utils";
+import { Footer, Chart, Menu, Map } from "../../sharedComponents"
+import SectorsSelector from "./components/SectorsSelector";
+import SectorsGallery from "./components/SectorsGallery";
+import Sector from "./components/Sector";
+import "../../styles/CragPage.scss";
+import { subPageBg, wave } from "../../assets";
 
 const CragPage: React.FC = (): JSX.Element => {
     const { cragId } = useParams();
@@ -26,8 +21,6 @@ const CragPage: React.FC = (): JSX.Element => {
     const [scrollTop, setScrollTop] = useState<number>(0);
     const imagesAmount = isMobile() ? 2 : 4;
 
-    const mapBackground = "#F7770F";
-    const mapBorders = "#263238";
 
     const handleScroll = () => {
         const newScrollYPosition = window.scrollY;
@@ -49,7 +42,7 @@ const CragPage: React.FC = (): JSX.Element => {
         <div className="CragPage">
             <Menu scrollTop={scrollTop} />
             <div className="landingPage">
-                <img src={test} className="wave" />
+                <img src={subPageBg} className="wave" alt="mainBackground" />
 
                 <div className="header">
                     <h1 className="cargName">{cragData?.data?.name.toUpperCase()}</h1>
@@ -66,11 +59,15 @@ const CragPage: React.FC = (): JSX.Element => {
 
             {cragData?.data && (
                 <div className="mapAndDescription">
-                    <div className="description">{cragData.data.description}</div>
+                    <div className="description">
+                        {cragData.data.description}
+                    </div>
                     <Map
-                        markers={[{ name: selectedSector?.name || "", coordinates: cragData.data.coordinates, _id: cragData.data._id }]}
-                        background={mapBackground}
-                        borders={mapBorders}
+                        markers={[{
+                            coordinates: cragData.data.coordinates,
+                            name: cragData.data.name,
+                            _id: cragData.data._id
+                        }]}
                         scale={1200}
                     />
                 </div>
@@ -85,14 +82,14 @@ const CragPage: React.FC = (): JSX.Element => {
                 />
             </div>
 
-            <img src={backgroundSrc} alt="background" className="waveImage" />
+            <img src={wave} alt="wave" className="waveImage" />
 
             <SectorsGallery
                 setSelectedSector={setSelectedSector}
                 sectors={sectorsData?.data || []}
             />
 
-            <img src={backgroundSrc} alt="background" className="waveImage" />
+            <img src={wave} alt="wave" className="waveImage" />
 
             {selectedSector &&
                 <Sector

@@ -1,21 +1,12 @@
-import { IRoute } from "../interfaces";
-
-export enum GradeDifficulty {
-    BEGINNER = "beginner",
-    INTERMEDIATE = "intermediate",
-    ADVANCED = "advanced",
-    MASTER = "master",
-    PRO = "pro",
-    ELITE = "elite",
-};
+import { IRoute, GradeDifficulty } from "../interfaces";
 
 const gradesRangesBorders: Record<GradeDifficulty, string> = {
-    beginner: "5c+",
     intermediate: "7a",
+    beginner: "5c+",
     advanced: "7c",
     master: "8b",
-    pro: "9a",
     elite: "9c",
+    pro: "9a",
 }
 
 export const getSectorDifficultyLevel = (routes: IRoute[]): string => {
@@ -23,22 +14,27 @@ export const getSectorDifficultyLevel = (routes: IRoute[]): string => {
         return "";
     }
 
-    const routesDifficulty = routes.map(route => getGradeDifficulty(route.grade));
+    const routesDifficulty: Partial<Record<GradeDifficulty, number>>[] = routes.map(route => getGradeDifficulty(route.grade));
     let occurences: Partial<Record<GradeDifficulty, number>> = {};
 
     routesDifficulty.forEach(level => {
+        //@ts-ignore
         if (occurences[level]) {
+            //@ts-ignore
             occurences[level]++;
         } else {
+            //@ts-ignore
             occurences[level] = 1;
         }
     });
 
+    //@ts-ignore
     const occurencesAsArray = Object.keys(occurences).map(key => ({ level: key, amount: occurences[key] }));
 
     return occurencesAsArray.sort((a, b) => b.amount - a.amount)[0].level;
 }
 
-export const getGradeDifficulty = (grade: string): string => {
-    return Object.keys(gradesRangesBorders).find(key => gradesRangesBorders[key].localeCompare(grade) >= 0) || "";
+export const getGradeDifficulty = (grade: string): Partial<Record<GradeDifficulty, number>> => {
+    //@ts-ignore
+    return Object.keys(gradesRangesBorders).find(key => gradesRangesBorders[key].localeCompare(grade) >= 0);
 };

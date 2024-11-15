@@ -1,11 +1,10 @@
 import React from "react";
-import "../../../styles/ListItem.scss";
-import { ListView } from "../../../consts/index.ts";
 import { useNavigate } from "react-router";
-import { ICrag } from "../../../interfaces/Crag.ts";
-import { isDesktopLg, isMobile } from "../../../utils/brakePoints.ts";
-
-import arrowRight from "../../../assets/icons/arrow_right.svg";
+import { ListView } from "../../../consts";
+import { ICrag } from "../../../interfaces";
+import { isDesktopLg } from "../../../utils";
+import "../../../styles/ListItem.scss";
+import { arrowRight } from "../../../assets";
 
 interface Props {
     listView: ListView;

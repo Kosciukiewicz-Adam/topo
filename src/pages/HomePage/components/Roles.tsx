@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { isMobile } from "../../../utils"
+import { PolaroidCard } from "../../../sharedComponents";
 import "../../../styles/Roles.scss";
-import { isMobile } from "../../../utils/brakePoints.ts"
-import PolaroidCard from "../../../sharedComponents/PolaroidCard.tsx";
-
-import backgroundMobile from "../../../assets/rolesBg.jpg";
-import backgroundDesktop from "../../../assets/larambla.jpg";
-import img1 from "../../../assets/climbingPartner.jpg";
-import arrow from "../../../assets/icons/arrow.svg";
-import img2 from "../../../assets/creating.webp";
-import img3 from "../../../assets/guidebook.jpg";
-import img4 from "../../../assets/topo.jpg";
+import {
+    climbingPartner,
+    rolesBgMobile,
+    guidebook,
+    creating,
+    rolesBg,
+    arrow,
+    topo,
+} from "../../../assets"
 
 interface Role {
     description: string;
@@ -18,36 +19,34 @@ interface Role {
 }
 
 enum SlideChangeDir {
-    PREV = " prev",
+    PREV = "prev",
     NEXT = "next",
 }
 
 const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
     const [carouselSlide, setCarouselSlide] = useState<number>(0);
-    const backgroundImage = isMobile() ? backgroundMobile : backgroundDesktop;
-
-    const mockDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    const backgroundImage = isMobile() ? rolesBgMobile : rolesBg;
 
     const roles: Role[] = [
         {
             name: "Find climbing partners",
             description: "Find people to climb with anywhere around the wourld using our social media features",
-            imgSrc: img1
+            imgSrc: climbingPartner
         },
         {
             name: "Check topo",
             description: "Get access to thousends of routes, sectors and crags. You can also get many insidefull information about your projects, learn route hostory or learn new beta",
-            imgSrc: img2
+            imgSrc: creating
         },
         {
             name: "Log ascends",
             description: "Log ascends of each route you were able to send, check ascends of other climbers.",
-            imgSrc: img3
+            imgSrc: guidebook
         },
         {
             name: "Build our community",
             description: "Add routes bolted or discovered by you and share them with the rest of the climbing wourld",
-            imgSrc: img4
+            imgSrc: topo
         },
     ];
 

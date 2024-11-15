@@ -1,5 +1,5 @@
 import React from "react";
-import { QueryStatus } from "../consts/QueryStatus.ts";
+import { QueryStatus } from "../consts";
 
 interface Props {
     queryStatus: QueryStatus;

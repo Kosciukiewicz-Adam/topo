@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../styles/PolaroidCard.scss";
 import { useSpring, a } from '@react-spring/web';
-import turnaround from "../assets/icons/turnaround.svg";
+import {turnaround} from "../assets";
+import "../styles/PolaroidCard.scss";
 
 interface Props {
     description: string;
-    scrollTop: number;
+    scrollTop?: number;
     index?: number;
     name: string;
     imgSrc: any;
@@ -44,7 +44,6 @@ const PolaroidCard: React.FC<Props> = ({
         <div
             onClick={() => setFlipped(!flipped)}
             className={componentClassName}
-        //style={animation}
         >
             <a.div
                 style={frontStyle}

@@ -1,5 +1,5 @@
 import React from "react";
-import { ISector } from "../../../interfaces/index.ts";
+import { ISector } from "../../../interfaces";
 import "../../../styles/SectorsSelector.scss";
 
 interface Props {

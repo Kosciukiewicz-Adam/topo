@@ -1,7 +1,7 @@
 import { type LatLngExpression } from 'leaflet';
 
 export interface IMarker {
-    name: string;
     coordinates: LatLngExpression;
+    name: string;
     _id: string;
 };

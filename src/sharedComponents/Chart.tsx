@@ -1,13 +1,13 @@
 import React from "react";
 import "../styles/Chart.scss";
 import { IGradeData, IRoute } from "../interfaces";
-import { GradeScale } from "../consts/GradeScale.ts";
+import { GradeScale } from "../consts";
 
 interface Props {
     routesAmountToShow?: number;
+    startAnimation?: boolean;
     gradeScale: GradeScale;
     allRoutes: IRoute[];
-    startAnimation: boolean;
 }
 
 const Chart: React.FC<Props> = ({

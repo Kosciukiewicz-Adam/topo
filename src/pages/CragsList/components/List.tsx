@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../../../styles/List.scss";
 import { ICrag } from "../../../interfaces";
-import { useNavigate } from "react-router";
-import { getCountryFlag } from "./CountryFlag.tsx";
-import { ListView } from "../../../consts/index.ts";
-import FilterButton from "../../../sharedComponents/FilterButton.tsx";
-import ListItem from "./ListItem.tsx";
-
-import detailedList from "../../../assets/icons/detailed_list.svg";
-import simpleList from "../../../assets/icons/simple_list.svg";
-import checkboxYes from "../../../assets/icons/checkbox_yes.svg";
-import checkboxNo from "../../../assets/icons/checkbox_no.svg";
-import number from "../../../assets/icons/number.svg";
-import abc from "../../../assets/icons/abc.svg";
+import { FilterButton, CountryFlag } from "../../../sharedComponents";
+import { ListView } from "../../../consts";
+import ListItem from "./ListItem";
+import {
+    detailedList,
+    simpleList,
+    checkboxYes,
+    checkboxNo,
+    number,
+    abc,
+} from "../../../assets"
 
 interface Props {
     crags: ICrag[];
@@ -122,7 +121,7 @@ const List: React.FC<Props> = ({ crags, searchQuery }): JSX.Element => {
                 countriesList.map((country) => (<>
                     <h2 className="countryName" key={country.name}>
                         {listView === ListView.DETAILED &&
-                            getCountryFlag(country.name)
+                            <CountryFlag countryName={country.name} />
                         }
                         {getCountryLabel(country)}
                     </h2>
