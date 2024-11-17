@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
 import { QueryStatus } from "../../../consts";
-import { isMobile } from "../../../utils"
+import { useBrakepoints } from "../../../utils"
 import { ICrag } from "../../../interfaces";
 import { fetchCrags } from "../../../api";
 import { Map, DataComponentWrapper } from "../../../sharedComponents";
@@ -18,6 +18,7 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const [selectedCrag, setSelectedCrag] = useState<ICrag>();
     const { status, data } = useQuery('crags', fetchCrags);
     const maxMobileDescriptionLength = 70;
+    const { isMobile } = useBrakepoints();
 
     useEffect(() => {
         if (scrollTop > 350 && !showAnimation) {
@@ -41,7 +42,7 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const getDescription = (description: string): string => {
         const splitedDescription = description.split(" ");
 
-        if (!isMobile() || splitedDescription.length < maxMobileDescriptionLength) {
+        if (!isMobile || splitedDescription.length < maxMobileDescriptionLength) {
             return description;
         }
 

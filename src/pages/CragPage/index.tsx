@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api";
 import { ISector } from "../../interfaces";
 import { GradeScale } from "../../consts";
-import { isMobile } from "../../utils";
+import { useBrakepoints } from "../../utils";
 import { Footer, Chart, Menu, Map } from "../../sharedComponents"
 import SectorsSelector from "./components/SectorsSelector";
 import SectorsGallery from "./components/SectorsGallery";
@@ -19,8 +19,8 @@ const CragPage: React.FC = (): JSX.Element => {
     const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
     const [selectedSector, setSelectedSector] = useState<ISector>();
     const [scrollTop, setScrollTop] = useState<number>(0);
-    const imagesAmount = isMobile() ? 2 : 4;
-
+    const { isMobile } = useBrakepoints();
+    const imagesAmount = isMobile ? 2 : 4;
 
     const handleScroll = () => {
         const newScrollYPosition = window.scrollY;

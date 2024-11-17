@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { isMobile } from "../../../utils"
+import { useBrakepoints } from "../../../utils"
 import { PolaroidCard } from "../../../sharedComponents";
 import "../../../styles/Roles.scss";
 import {
@@ -25,7 +25,8 @@ enum SlideChangeDir {
 
 const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
     const [carouselSlide, setCarouselSlide] = useState<number>(0);
-    const backgroundImage = isMobile() ? rolesBgMobile : rolesBg;
+    const { isMobile } = useBrakepoints();
+    const backgroundImage = isMobile ? rolesBgMobile : rolesBg;
 
     const roles: Role[] = [
         {
@@ -97,7 +98,7 @@ const Roles: React.FC<{ scrollTop: number }> = ({ scrollTop }): JSX.Element => {
             <img src={backgroundImage} alt="" className="bgImage" />
             <div className="contentWrapper">
                 <h2 className="title">More than just a topo service</h2>
-                {isMobile() ? getMobileContent() : getDesktopContent()}
+                {isMobile ? getMobileContent() : getDesktopContent()}
             </div>
         </div>
     )

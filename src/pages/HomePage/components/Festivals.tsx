@@ -3,18 +3,19 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router"
 import { fetchFestivals } from "../../../api"
 import arrowRight from "../.././../assets/icons/arrow_right.svg";
-import { isMobile } from "../../../utils"
+import { useBrakepoints } from "../../../utils"
 import "../../../styles/Festivals.scss";
 
 const Festivals: React.FC = (): JSX.Element => {
     const { status, data } = useQuery('festivals', fetchFestivals);
+    const { isMobile } = useBrakepoints();
     const navigate = useNavigate();
 
     return (
         <div className="Festivals">
             <h2 className="sectionHeader">Discover anual climbing festivals</h2>
             <div className="contentWrapper">
-                {(isMobile() ? data?.slice(0, 1) : data)?.map(festival => (
+                {(isMobile ? data?.slice(0, 1) : data)?.map(festival => (
                     <div className="festivalCard">
                         <img src={festival.images[0]} alt="" className="baner" />
                         <div className="content">

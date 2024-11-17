@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { ListView } from "../../../consts";
 import { ICrag } from "../../../interfaces";
-import { isDesktopLg } from "../../../utils";
+import { useBrakepoints } from "../../../utils";
 import "../../../styles/ListItem.scss";
 import { arrowRight } from "../../../assets";
 
@@ -14,7 +14,8 @@ interface Props {
 
 const ListItem: React.FC<Props> = ({ listView, index, crag }): JSX.Element => {
     const navigate = useNavigate();
-    const descriptionLength = isDesktopLg() ? 250 : 200;
+    const { isMobile } = useBrakepoints();
+    const descriptionLength = isMobile ? 250 : 200;
     let shortDescription = crag.description.split("").slice(0, descriptionLength).join("");
     shortDescription += "[...]";
     const style = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import { isMobile } from "../../utils"
+import { useBrakepoints } from "../../utils"
 import ServiceStats from "./components/ServiceStats";
 import CragPreview from "./components/CragPreview";
 import Festivals from "./components/Festivals";
@@ -16,7 +16,8 @@ import { homePageMainBg, homePageMainBgMobile, logo } from "../../assets";
 const Homepage: React.FC = (): JSX.Element => {
     const [scrollTop, setScrollTop] = useState<number>(0);
     const parallaxRef = useRef<any>(null);
-    const mainBackgorund = isMobile() ? homePageMainBgMobile : homePageMainBg;
+    const { isMobile } = useBrakepoints();
+    const mainBackgorund = isMobile ? homePageMainBgMobile : homePageMainBg;
 
     useEffect(() => {
         if (parallaxRef?.current?.container) {
@@ -43,9 +44,9 @@ const Homepage: React.FC = (): JSX.Element => {
                             <h2 className="titleText">Biggest free rock climbing guidebook</h2>
                         </div>
                     </div>
-                    {isMobile() ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview scrollTop={scrollTop} />}
+                    {isMobile ? <ServiceStats scrollTop={scrollTop} /> : <CragPreview scrollTop={scrollTop} />}
                     <ParallaxDivider height="115vh" mobileHeight="100vh" />
-                    {isMobile() ? <CragPreview scrollTop={scrollTop} /> : <ServiceStats scrollTop={scrollTop} />}
+                    {isMobile ? <CragPreview scrollTop={scrollTop} /> : <ServiceStats scrollTop={scrollTop} />}
                 </ParallaxLayer>
             </Parallax>
         </div>

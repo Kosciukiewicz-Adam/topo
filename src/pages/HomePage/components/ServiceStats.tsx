@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { isMobile } from "../../../utils"
+import { useBrakepoints } from "../../../utils"
 import "../../../styles/ServiceStats.scss";
 import { serviceStatsBg, route, years, users, crag, sector } from "../../../assets";
 
@@ -25,7 +25,8 @@ const getStat: React.FC<Stat> = ({ icon, number, label }): JSX.Element => (
 
 const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     const [counter, setCounter] = useState<number>(0);
-    const startScrollHeight = isMobile() ? 100 : 1200
+    const { isMobile } = useBrakepoints();
+    const startScrollHeight = isMobile ? 100 : 1200
     const sectorsAmount = 102;
     const routesAmount = 851;
     const usersAmount = 5000;
@@ -40,7 +41,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
         let interval: number = 0;
 
         if (scrollTop > startScrollHeight) {
-            interval = window.setInterval(() => setCounter(prev => (prev + 1)), 50);
+            interval = window.setInterval(() => setCounter(prev => (prev + 1)), 30);
         }
 
         if (counter >= users) {
@@ -74,7 +75,7 @@ const ServiceStats: React.FC<Props> = ({ scrollTop }): JSX.Element => {
             <h2 className="sectionHeader">Look at our stats</h2>
             <div className="contentwrapper">
 
-                {isMobile() ? (
+                {isMobile ? (
                     <div className="mobileWrapper">
                         {stats.map(stat => getStat(stat))}
                     </div>

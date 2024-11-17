@@ -1,4 +1,4 @@
-import { isMobile, isDesktopLg } from "./brakePoints";
+import useBrakepoints from "./useBrakePoints";
 import { getGradeDifficulty, getSectorDifficultyLevel } from "./gradeDifficulty";
 
-export { isDesktopLg, isMobile, getGradeDifficulty, getSectorDifficultyLevel };
+export { useBrakepoints, getGradeDifficulty, getSectorDifficultyLevel };
