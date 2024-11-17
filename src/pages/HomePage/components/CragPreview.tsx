@@ -55,8 +55,8 @@ const CragPreview: React.FC<Props> = ({ scrollTop }): JSX.Element => {
     return (
         <DataComponentWrapper
             queryStatus={status as QueryStatus}
-            customLoader={
-                <div className="CragPreview"></div>
+            customLoaderWrapper={(children) =>
+                <div className="CragPreview">{children}</div>
             }
         >
             <div className="CragPreview">

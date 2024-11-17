@@ -23,15 +23,15 @@
     }
 
     .button {
-        width: 20px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
         padding: 8px;
         background: white;
         border-radius: 100vmax;
 
         @include mobile-md {
-            width: 22px;
-            height: 22px;
+            width: 42px;
+            height: 42px;
             padding: 10px;
         }
     }

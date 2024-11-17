@@ -31,6 +31,7 @@ import subPageBg from "./subPageBg.jpg";
 import guidebook from "./guidebook.jpg";
 import creating from "./creating.webp";
 import rolesBg from "./rolesBg.jpg";
+import loader from "./loader.png";
 import topo from "./topo.jpg";
 import logo from "./logo.png"
 
@@ -57,9 +58,10 @@ export {
     number,
     search,
     sector,
+    loader,
+    github,
     arrow,
     mouse,
-    github,
     route,
     years,
     users,

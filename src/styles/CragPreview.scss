@@ -1,7 +1,7 @@
 @import "./settings.scss";
 
 .CragPreview {
-    width: calc(100% - 20px);
+    width: 100%;
     background: white;
     display: flex;
     flex-direction: column;
@@ -47,6 +47,7 @@
         max-width: $maxPageWidth;
         justify-content: space-between;
         height: 100%;
+        gap: 50px;
 
         @include mobile-md {
             width: 80%;
@@ -72,7 +73,7 @@
         justify-content: space-evenly;
 
         @include mobile-md {
-            width: calc(50% - 25px);
+            width: 50%;
             flex-direction: column;
             padding-bottom: 0;
             min-height: 600px;
@@ -150,7 +151,7 @@
         height: 50%;
 
         @include mobile-md {
-            width: calc(50% - 25px);
+            width: 50%;
             height: 600px;
             align-items: unset;
         }
@@ -158,7 +159,7 @@
 
     .Map {
         width: 100%;
-        height: calc(100% - 80px);
+        height: 100%;
         cursor: grab;
 
         .marker {
@@ -183,6 +184,7 @@
         font-size: 12px;
         justify-content: center;
         padding-top: 10px;
+        align-items: center;
 
         @include mobile-md {
             height: 25px;

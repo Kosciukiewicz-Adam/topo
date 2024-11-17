@@ -113,7 +113,7 @@ const List: React.FC<Props> = ({ crags, searchQuery }): JSX.Element => {
                 <FilterButton
                     buttonLabels={["Sorting by routes amount", "Sorting alphabetically"]}
                     changeButtonState={changeSortType}
-                    iconsSrc={[abc, number]}
+                    iconsSrc={[number, abc]}
                     width={200}
                 />
             </div>
@@ -127,14 +127,14 @@ const List: React.FC<Props> = ({ crags, searchQuery }): JSX.Element => {
                     </h2>
                     <div className="cragsWrapper">
                         {cragsToDisplay.filter(crag => crag.country === country.name).map((crag, index) =>
-                            <ListItem crag={crag} index={index} listView={listView} />
+                            <ListItem crag={crag} index={index} listView={listView} key={crag.name} />
                         )}
                     </div>
                 </>))
             ) : (
                 <div className="cragsWrapper">
                     {cragsToDisplay.map((crag, index) =>
-                        <ListItem crag={crag} index={index} listView={listView} />
+                        <ListItem crag={crag} index={index} listView={listView} key={crag.name} />
                     )}
                 </div>
             )}

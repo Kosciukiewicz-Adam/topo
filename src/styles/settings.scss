@@ -19,6 +19,10 @@ $headerFontSizeMobile: 30px;
 
 body {
     font-family: $mainFontFamily;
+
+    * {
+        box-sizing: border-box !important;
+    }
 }
 
 @mixin mobile-md {

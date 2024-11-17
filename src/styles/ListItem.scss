@@ -1,7 +1,7 @@
 @import "./settings.scss";
 
 .ListItem {
-    height: 80px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -17,7 +17,7 @@
     }
 
     &.detailed {
-        width: calc(100% - 20px);
+        width: 100%;
         justify-content: space-between;
         scale: 0.7;
         opacity: 0;
@@ -62,8 +62,8 @@
     }
 
     .navButton {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
         padding: 5px;
         border-radius: 100vmax;
         background: $orange;
