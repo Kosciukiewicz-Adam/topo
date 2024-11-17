@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { QueryStatus } from "../../consts";
 import { useQuery } from "react-query";
 import { fetchCrags } from "../../api";
+import { useScrollTop } from "../../utils";
 import { DataComponentWrapper, Footer, Menu, Map } from "../../sharedComponents";
 import List from "./components/List";
 import "../../styles/CragsList.scss";
@@ -11,7 +12,7 @@ import { search, mouse, drag, subPageBg } from "../../assets";
 const CragsList: React.FC = (): JSX.Element => {
     const { data, status } = useQuery('crags', () => fetchCrags());
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const [scrollTop, setScrollTop] = useState<number>(0);
+    const scrollTop = useScrollTop();
     const navigate = useNavigate();
 
     const formatedSearchQuery = searchQuery.trim().toLocaleLowerCase()
@@ -19,11 +20,6 @@ const CragsList: React.FC = (): JSX.Element => {
     const searchHints = data?.filter(crag =>
         crag.name.trim().toLocaleLowerCase().includes(formatedSearchQuery)).map(({ _id, name }) =>
             ({ name, _id }));
-
-    const handleScroll = () => {
-        const newScrollYPosition = window.scrollY;
-        setScrollTop(newScrollYPosition);
-    };
 
     const scrollToList = () => {
         window.scrollTo({ top: 1000 })
@@ -36,10 +32,8 @@ const CragsList: React.FC = (): JSX.Element => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
         window.addEventListener('keydown', handleKeyDown);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [])
@@ -47,7 +41,7 @@ const CragsList: React.FC = (): JSX.Element => {
     const showHints = !!searchHints?.length && !!searchQuery.length;
 
     return (
-        <DataComponentWrapper queryStatus={status as QueryStatus}>
+        <DataComponentWrapper queryStatus={status as QueryStatus} isPage={true}>
             <div className="CragsList">
                 <Menu scrollTop={scrollTop} />
                 <div className="landingPage" style={{ backgroundImage: `url(${subPageBg})` }}>

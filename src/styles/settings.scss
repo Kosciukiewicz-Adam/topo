@@ -17,14 +17,6 @@ $mainFontFamily: "Afacad Flux";
 $headerFontSize: 35px;
 $headerFontSizeMobile: 30px;
 
-body {
-    font-family: $mainFontFamily;
-
-    * {
-        box-sizing: border-box !important;
-    }
-}
-
 @mixin mobile-md {
     @media (min-width: 750px) {
         @content;
@@ -40,5 +32,22 @@ body {
 @mixin desktop-lg {
     @media (min-width: 1160px) {
         @content;
+    }
+}
+
+body {
+    font-family: $mainFontFamily;
+
+    * {
+        box-sizing: border-box !important;
+    }
+}
+
+.sectionHeader {
+    font-size: $headerFontSizeMobile !important;
+    margin: 0;
+
+    @include mobile-md {
+        font-size: $headerFontSize !important;
     }
 }

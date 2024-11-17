@@ -12,7 +12,11 @@ const SectorsSelector: React.FC<Props> = ({ sectors, setSelectedSector, selected
     return (
         <div className="SectorsSelector">
             {sectors.map(sector => (
-                <div className={`sectorButton ${selectedSectorId === sector._id ? "selected" : ""}`} onClick={() => setSelectedSector(sector)}>
+                <div
+                    className={`sectorButton ${selectedSectorId === sector._id ? "selected" : ""}`}
+                    onClick={() => setSelectedSector(sector)}
+                    key={sector._id}
+                >
                     <img src={sector.image} alt="sector" className="buttonImage" />
                     <div className="name">{sector.name}</div>
                 </div>

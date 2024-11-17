@@ -27,11 +27,13 @@ import climbingPartner from "./climbingPartner.jpg";
 import serviceStatsBg from "./serviceStatsBg.jfif";
 import homePageMainBg from "./homePageMainBg.jpg";
 import rolesBgMobile from "./rolesBgMobile.jpg";
+import errorPageBg from "./errorPageBg.jpg"
 import subPageBg from "./subPageBg.jpg";
 import guidebook from "./guidebook.jpg";
 import creating from "./creating.webp";
 import rolesBg from "./rolesBg.jpg";
 import loader from "./loader.png";
+import clouds from "./clouds.png";
 import topo from "./topo.jpg";
 import logo from "./logo.png"
 
@@ -43,6 +45,7 @@ export {
     rolesBgMobile,
     detailedList,
     checkboxYes,
+    errorPageBg,
     turnaround,
     checkboxNo,
     simpleList,
@@ -60,6 +63,7 @@ export {
     sector,
     loader,
     github,
+    clouds,
     arrow,
     mouse,
     route,

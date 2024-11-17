@@ -1,4 +1,10 @@
-import useBrakepoints from "./useBrakePoints";
 import { getGradeDifficulty, getSectorDifficultyLevel } from "./gradeDifficulty";
+import useBrakepoints from "./useBrakePoints";
+import useScrollTop from "./useScrollTop";
 
-export { useBrakepoints, getGradeDifficulty, getSectorDifficultyLevel };
+export {
+    getSectorDifficultyLevel,
+    getGradeDifficulty,
+    useBrakepoints,
+    useScrollTop,
+};

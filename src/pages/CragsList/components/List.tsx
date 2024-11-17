@@ -127,7 +127,7 @@ const List: React.FC<Props> = ({ crags, searchQuery }): JSX.Element => {
                     </h2>
                     <div className="cragsWrapper">
                         {cragsToDisplay.filter(crag => crag.country === country.name).map((crag, index) =>
-                            <ListItem crag={crag} index={index} listView={listView} key={crag.name} />
+                            <ListItem crag={crag} index={index} listView={listView} key={`${crag.name} withCountries`} />
                         )}
                     </div>
                 </>))

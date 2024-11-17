@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { fetchCrag, fetchCragRoutes, fetchCragSectors } from "../../api";
 import { ISector } from "../../interfaces";
 import { GradeScale, QueryStatus } from "../../consts";
-import { useBrakepoints } from "../../utils";
+import { useBrakepoints, useScrollTop } from "../../utils";
 import { Footer, Chart, Menu, Map, DataComponentWrapper } from "../../sharedComponents"
 import SectorsSelector from "./components/SectorsSelector";
 import SectorsGallery from "./components/SectorsGallery";
@@ -18,28 +18,16 @@ const CragPage: React.FC = (): JSX.Element => {
     const routesData = useQuery('cragRoutes', () => fetchCragRoutes(cragId || ""));
     const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
     const [selectedSector, setSelectedSector] = useState<ISector>();
-    const [scrollTop, setScrollTop] = useState<number>(0);
     const { isMobile } = useBrakepoints();
+    const scrollTop = useScrollTop();
     const imagesAmount = isMobile ? 2 : 4;
-
-    const handleScroll = () => {
-        const newScrollYPosition = window.scrollY;
-        setScrollTop(newScrollYPosition);
-    };
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [])
 
     if (!selectedSector && sectorsData?.data?.length) {
         setSelectedSector(sectorsData.data[0])
     }
 
     return (
-        <DataComponentWrapper queryStatus={cragData.status as QueryStatus}>
+        <DataComponentWrapper queryStatus={cragData.status as QueryStatus} isPage={true}>
             <div className="CragPage">
                 <Menu scrollTop={scrollTop} />
                 <div className="landingPage">
@@ -64,6 +52,7 @@ const CragPage: React.FC = (): JSX.Element => {
                             {cragData.data.description}
                         </div>
                         <Map
+                            center={cragData.data.coordinates}
                             markers={[{
                                 coordinates: cragData.data.coordinates,
                                 name: cragData.data.name,

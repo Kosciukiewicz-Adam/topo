@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {logo} from "../assets";
+import { logo } from "../assets";
 import "../styles/Menu.scss";
 
 interface Props {
