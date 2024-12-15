@@ -14,7 +14,7 @@ import { subPageBg, wave } from "../../assets";
 
 const CragPage: React.FC = (): JSX.Element => {
     const { cragId } = useParams();
-    const sectorsData = useQuery('cragSectors', () => fetchCragSectors(cragId || ""));
+    const sectorsData = useQuery(['cragSectors', cragId], () => fetchCragSectors(cragId || ""));
     const routesData = useQuery('cragRoutes', () => fetchCragRoutes(cragId || ""));
     const cragData = useQuery('crag', () => fetchCrag(cragId || ""));
     const [selectedSector, setSelectedSector] = useState<ISector>();

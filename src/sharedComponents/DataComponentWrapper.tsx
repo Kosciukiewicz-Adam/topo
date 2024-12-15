@@ -34,7 +34,7 @@ const DataComponentWrapper: React.FC<Props> = ({ queryStatus, children, customLo
             }
 
             return (
-                <div className="errorComponent">
+                <div className="DataComponentWrapper errorComponent">
                     <p>Error</p>
                     <p>Unable to load data</p>
                 </div>
