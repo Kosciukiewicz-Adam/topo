@@ -12,9 +12,15 @@ Topo is guide for rock climbing, it contains informations about crags (climbing 
 - SCSS
 
 ## Backend:
+Application has 2 alternative backend services:
+1. First: https://github.com/Kosciukiewicz-Adam/topo_server
 - Express
 - MongoDB
 - TypeScript
+2. Second (currently in use): https://github.com/Kosciukiewicz-Adam/topo_server_py
+- Python
+- FastApi
+- MongoDB
 
 ### Backend repo: https://github.com/Kosciukiewicz-Adam/topo_server
 
