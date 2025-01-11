@@ -12,7 +12,7 @@
         width: 100%;
         aspect-ratio: 1/1;
         position: relative;
-        border-radius: 10px;
+        border-radius: $standardBorderRadius;
         overflow: hidden;
         border: 2px solid black;
         box-sizing: border-box;

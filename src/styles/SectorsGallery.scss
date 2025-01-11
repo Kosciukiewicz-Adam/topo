@@ -27,7 +27,7 @@
         width: 250px;
         height: 120px;
         position: relative;
-        border-radius: 20px;
+        border-radius: $standardBorderRadius;
         overflow: hidden;
         transition: 0.5s;
 
@@ -64,7 +64,7 @@
 
         .name {
             padding: 5px 8px;
-            border-radius: 10px;
+            border-radius: $standardBorderRadius;
             background-color: $yellow;
             color: black;
             width: fit-content;

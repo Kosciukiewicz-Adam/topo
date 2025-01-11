@@ -1,9 +1,11 @@
+@import "./settings.scss";
+
 .FilterButton {
     height: 40px;
     background: white;
     display: flex;
     flex-direction: row;
-    border-radius: 10px;
+    border-radius: $standardBorderRadius;
     align-items: center;
     cursor: pointer;
     user-select: none;

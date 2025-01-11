@@ -16,6 +16,10 @@ $footerHeightMobile: 15vh;
 $mainFontFamily: "Afacad Flux";
 $headerFontSize: 35px;
 $headerFontSizeMobile: 30px;
+$smallBorderRadius: 5px;
+$standardBorderRadius: 10px;
+$largeBorderRadius: 20px;
+$roundBorderRadius: 100vmax;
 
 @mixin mobile-md {
     @media (min-width: 750px) {

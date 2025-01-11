@@ -6,7 +6,7 @@ $boxShadown: rgb(255 255 255 / 30%) 0px 19px 38px, rgb(255 255 255 / 22%) 0px 15
     height: calc(100vh - $footerHeightMobile);
     width: 100%;
     background: black;
-    background-image: url(https://vasenev.com/wp-content/uploads/2017/06/EV5D8781.jpg);
+    background-image: url(https://www.climberswa.asn.au/wp-content/uploads/2024/03/banff-mountain-film-festival-webpage-1920x1200-1.jpg);
     background-size: cover;
 
     @include mobile-md {
@@ -19,8 +19,9 @@ $boxShadown: rgb(255 255 255 / 30%) 0px 19px 38px, rgb(255 255 255 / 22%) 0px 15
     }
 
     .sectionHeader {
-        color: white;
+        color: black;
         text-align: center;
+        padding-bottom: 30px;
 
         @include mobile-md {
             text-align: left;
@@ -33,121 +34,78 @@ $boxShadown: rgb(255 255 255 / 30%) 0px 19px 38px, rgb(255 255 255 / 22%) 0px 15
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        align-items: center;
+        gap: 20px;
     }
 
     .festivalCard {
-        width: 100%;
+        width: 80%;
         height: 85%;
-        border-radius: 10px;
+        border-radius: $standardBorderRadius;
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 300px;
-        transform: rotate(0deg);
-        transition: 0.3s ease-in-out;
-        cursor: pointer;
+        background: white;
 
         @include mobile-md {
-            width: 30%;
-        }
-
-        &:hover {
-            transform: rotate(2deg);
-
-            .tearoff {
-                transform: rotate(-10deg);
-                top: 26px;
-                right: -10px;
-            }
+            width: calc(33% - 20px);
         }
 
         &:nth-child(2) {
-            .baner {
+            .image {
                 background: rgb(249 195 28);
             }
         }
     }
 
-    .baner {
+    .image {
         width: 100%;
-        height: 40%;
-        object-fit: cover;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-
-        border: 5px solid white;
-        box-sizing: border-box;
-    }
-
-    .content {
-        width: 100%;
-        padding: 20px;
         height: 35%;
-        background: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-    }
+        object-fit: cover;
+        border-top-left-radius: $standardBorderRadius;
+        border-top-right-radius: $standardBorderRadius;
 
-    .tearoff {
-        width: 100%;
-        border-top: 4px dashed $orange;
-        box-sizing: border-box;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        height: 15%;
-        background: white;
-        transform: rotate(0deg);
-        top: 0;
-        right: 0;
-        transition: 0.3s ease-in-out;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        @include desktop-lg {
+            height: 40%;
+        }
     }
 
     .festivalName {
-        font-size: 18px;
-        text-align: center;
-        padding: 6px;
-        background: $orange;
-        color: black;
-        border-radius: 18px;
+        font-size: 25px;
+        padding: 10px 20px;
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .date {
+        padding: 0 20px;
+        font-size: 16px;
+        width: 100%;
     }
 
     .description {
-        text-align: justify;
-        font-size: 12px;
-        height: 55%;
-        background: white;
+        padding: 20px;
     }
 
-    .website {
-        color: blue;
-        cursor: pointer;
-        width: 90%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-
-    .location {
+    .label {
+        background: #f5f5f5;
+        border-radius: $standardBorderRadius;
         display: flex;
         flex-direction: row;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+        padding: 5px 10px;
+        display: grid;
+        place-content: center;
 
-        .icon {
-            width: 20px;
-            height: 20px;
-            background: $orange;
-            border-radius: 100vmax;
+        &.clickable:hover {
             cursor: pointer;
+            background: #e6e6e6;
         }
+    }
+
+    .labelsWrapper {
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
     }
 }

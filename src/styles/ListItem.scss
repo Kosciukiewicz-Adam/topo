@@ -7,13 +7,13 @@
     padding: 10px;
     background-color: white;
     align-items: center;
-    border-radius: 10px;
+    border-radius: $standardBorderRadius;
 
     &.simple {
         width: 20%;
         min-width: 250px;
         justify-content: space-evenly;
-        border-radius: 10px;
+        border-radius: $standardBorderRadius;
     }
 
     &.detailed {
@@ -43,7 +43,7 @@
     .image {
         height: 100%;
         aspect-ratio: 1/1;
-        border-radius: 20px;
+        border-radius: $standardBorderRadius;
         object-fit: cover;
     }
 
@@ -65,7 +65,7 @@
         width: 30px;
         height: 30px;
         padding: 5px;
-        border-radius: 100vmax;
+        border-radius: $roundBorderRadius;
         background: $orange;
         color: black;
         cursor: pointer;

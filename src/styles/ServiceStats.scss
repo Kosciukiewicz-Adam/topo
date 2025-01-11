@@ -43,7 +43,7 @@
     .bgImageWrapper {
         width: 100%;
         height: 550px;
-        border-radius: 20px;
+        border-radius: $standardBorderRadius;
         overflow: hidden;
     }
 
@@ -56,7 +56,7 @@
     .icon {
         background: #d5d5d5;
         padding: 6px;
-        border-radius: 100vmax;
+        border-radius: $roundBorderRadius;
         height: 32px;
         width: 32px;
 
@@ -70,7 +70,7 @@
     .stat {
         height: 100px;
         width: 200px;
-        border-radius: 20px;
+        border-radius: $standardBorderRadius;
         display: flex;
         flex-direction: row;
         align-items: center;

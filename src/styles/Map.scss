@@ -1,4 +1,10 @@
+@import "./settings.scss";
+
 .Map {
     width: 200px;
     height: 200px;
+
+    .leaflet-container {
+        border-radius: $standardBorderRadius;
+    }
 }

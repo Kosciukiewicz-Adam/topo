@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router"
 import { fetchFestivals } from "../../../api"
-import { arrowRight } from "../.././../assets";
 import { useBrakepoints } from "../../../utils"
 import { QueryStatus } from "../../../consts";
 import { DataComponentWrapper } from "../../../sharedComponents";
@@ -13,6 +12,11 @@ const Festivals: React.FC = (): JSX.Element => {
     const { isMobile } = useBrakepoints();
     const navigate = useNavigate();
 
+    const handleCragClick = (cragId: string) => {
+        if (!cragId) return
+        navigate(`/crag/${cragId}`)
+    }
+
     return (
         <DataComponentWrapper queryStatus={status as QueryStatus}>
             <div className="Festivals">
@@ -20,21 +24,23 @@ const Festivals: React.FC = (): JSX.Element => {
                 <div className="contentWrapper">
                     {(isMobile ? data?.slice(0, 1) : data)?.map(festival => (
                         <div className="festivalCard" key={festival.name}>
-                            <img src={festival.images[0]} alt="" className="baner" />
-                            <div className="content">
-                                <div className="festivalName">
-                                    {festival.name}
-                                </div>
-                                <div className="date">{festival.date}</div>
-                                <div className="description">{festival.description}</div>
+                            <img src={festival.images[0]} alt="" className="image" />
+                            <div className="festivalName">
+                                {festival.name}
                             </div>
+                            <div className="labelsWrapper">
+                                <div className="label">
+                                    {festival.date}
+                                </div>
+                                <div className={`label ${festival.cragId ? "clickable" : ""}`} onClick={() => handleCragClick(festival.cragId)}>
+                                    {festival.location}
+                                </div>
+                                <div className="label clickable" onClick={() => window.open(festival.website, "_blank")}>
+                                    website
+                                </div>
+                            </div>
+                            <div className="description">{festival.description}</div>
 
-                            <div className="tearoff">
-                                <div className="location" onClick={() => navigate(`/crag/${festival.cragId}`)}>
-                                    {festival.location} <img src={arrowRight} alt="" className="icon" />
-                                </div>
-                                <div className="website" onClick={() => window.open(festival.website, "_blank")}>{festival.website}</div>
-                            </div>
                         </div>
                     ))}
                 </div>

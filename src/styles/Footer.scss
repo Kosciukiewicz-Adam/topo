@@ -27,7 +27,7 @@
         height: 32px;
         padding: 8px;
         background: white;
-        border-radius: 100vmax;
+        border-radius: $roundBorderRadius;
 
         @include mobile-md {
             width: 42px;
